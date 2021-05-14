@@ -8,3 +8,6 @@
   <p><%= number_to_currency course.price, unit: 'R$', separator: ',', delimiter: '.', format: '%u %n' %></p>
 
 <% end %>
+
+<%= link_to 'Registrar um Curso', new_course_path %>
+<%= link_to 'Voltar', root_path %>

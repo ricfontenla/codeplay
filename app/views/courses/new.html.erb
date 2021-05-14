@@ -1,0 +1,13 @@
+<%= form_with model: @course do |form| %>
+  <%= form.label :name, 'Nome' %>
+  <%= form.text_field :name %>
+  <%= form.label :description, 'Descrição' %>
+  <%= form.text_field :description %>
+  <%= form.label :code, 'Código' %>
+  <%= form.text_field :code %>
+  <%= form.label :price, 'Preço' %>
+  <%= form.text_field :price %>
+  <%= form.label :enrollment_deadline, 'Data limite de matrícula' %>
+  <%= form.text_field :enrollment_deadline %>
+  <%= form.submit 'Criar curso' %>
+<% end %>
