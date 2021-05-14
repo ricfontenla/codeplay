@@ -1,0 +1,11 @@
+<h1><%= @course.name %></h1>
+<dl>
+  <dt>Descrição</dt>
+  <dd><%= @course.description %></dd>
+  <dt>Código</dt>
+  <dd><%= @course.code %></dd>
+  <dt>Preço</dt>
+  <dd><%= number_to_currency @course.price, unit: 'R$', separator: ',', delimiter: '.', format: '%u %n' %></dd>
+  <dt>Data limite de matrícula</dt>
+  <dd><%= @course.enrollment_deadline.strftime('%d/%m/%Y') %></dd>
+</dl>
