@@ -10,4 +10,8 @@
   <%= form.label :enrollment_deadline, 'Data limite de matrícula' %>
   <%= form.text_field :enrollment_deadline %>
   <%= form.submit 'Criar curso' %>
+
+  <% @course.errors.each do |error| %>
+    <%= error.full_message %>
+  <% end %>
 <% end %>

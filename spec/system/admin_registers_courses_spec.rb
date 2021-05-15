@@ -29,4 +29,36 @@ describe 'Admin registers courses' do
     expect(page).to have_content('22/12/2033')
     expect(page).to have_link('Voltar')
   end
+
+  it 'and attributes cannot be blank' do
+    Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
+                   code: 'RUBYBASIC', price: 10,
+                   enrollment_deadline: '22/12/2033')
+
+    visit root_path
+    click_on 'Cursos'
+    click_on 'Registrar um Curso'
+    fill_in 'Nome', with: ''
+    fill_in 'Descrição', with: ''
+    fill_in 'Código', with: ''
+    fill_in 'Preço', with: ''
+    fill_in 'Data limite de matrícula', with: ''
+    click_on 'Criar curso'
+
+    expect(page).to have_content('não pode ficar em branco', count: 3)
+  end
+
+  it 'and code must be unique' do
+    Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
+                   code: 'RUBYBASIC', price: 10,
+                   enrollment_deadline: '22/12/2033')
+
+    visit root_path
+    click_on 'Cursos'
+    click_on 'Registrar um Curso'
+    fill_in 'Código', with: 'RUBYBASIC'
+    click_on 'Criar curso'
+
+    expect(page).to have_content('já está em uso')
+  end
 end
