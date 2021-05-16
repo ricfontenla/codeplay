@@ -1,0 +1,16 @@
+<%= form_with model: instructor do |form| %>
+  <%= form.label :name, 'Nome' %>
+  <%= form.text_field :name %>
+  <%= form.label :email, 'E-mail' %>
+  <%= form.text_field :email %>
+  <%= form.label :bio, 'Descrição' %>
+  <%= form.text_area :bio %>
+  <%= form.label :profile_picture, 'Foto' %>
+  <%= form.file_field :profile_picture %>
+
+  <%= form.submit 'Cadastrar Professor' %>
+
+  <% instructor.errors.each do |error| %>
+    <%= error.full_message %>
+  <% end %>
+<% end %>
