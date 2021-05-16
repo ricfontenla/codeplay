@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.new(recipe_params)
+    @course = Course.new(course_params)
     if @course.save
       redirect_to @course
     else
@@ -22,7 +22,7 @@ class CoursesController < ApplicationController
 
   private
 
-  def recipe_params
+  def course_params
     params.require(:course).permit(:name, :description, :code, 
                                    :price, :enrollment_deadline)
   end
