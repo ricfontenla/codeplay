@@ -15,6 +15,6 @@ describe 'Admin deletes instructors' do
     click_on 'Deletar'
      
     expect(current_path).to eq(instructors_path)
-    expect(page).to have_content('Nenhum professor cadastrado')
+    expect(Instructor.count).to eq(0)
   end
 end

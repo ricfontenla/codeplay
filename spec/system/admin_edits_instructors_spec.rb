@@ -86,9 +86,8 @@ describe 'Admin edits instructors' do
     click_on 'Professores'
     click_on 'Fulano Fulano'
     click_on 'Editar'
-    click_on 'Cancelar'
 
 
-    expect(current_path).to eq(instructor_path(instructor))
+    expect(page).to have_link(href: instructor_path(instructor))
   end
 end
