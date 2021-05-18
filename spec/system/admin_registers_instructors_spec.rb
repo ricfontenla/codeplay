@@ -1,14 +1,6 @@
 require 'rails_helper'
 
 describe 'Admin registers instructors' do
-  it 'from index page' do
-    visit root_path
-    click_on 'Professores'
-
-    expect(page).to have_link('Cadastrar um Professor', 
-                               href: new_instructor_path)
-  end
-
   it 'sucessfully' do
     visit root_path
     click_on 'Professores'

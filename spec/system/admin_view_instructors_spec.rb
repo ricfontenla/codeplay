@@ -33,13 +33,6 @@ describe 'admin view instructors' do
                   .attach(io: File.open('spec/fixtures/profile1.jpeg'), 
                           filename: 'profile1.jpeg')
 
-    instructor2 = Instructor.create!(name: 'Sicrano Sicrano', 
-                                     email: 'sicrano@codeplay.com.br', 
-                                     bio: 'Dev e fundador na Code Play')
-    instructor2.profile_picture
-                  .attach(io: File.open('spec/fixtures/profile2.jpg'), 
-                          filename: 'profile2.jpg')
-
     visit root_path
     click_on 'Professores'
     click_on 'Fulano Fulano'

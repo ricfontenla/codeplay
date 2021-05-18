@@ -4,4 +4,5 @@
 <p><%= @instructor.email %></p>
 
 <%= link_to 'Editar', edit_instructor_path%>
+<%= link_to 'Deletar', instructor_path(@instructor), method: :delete %>
 <%= link_to 'Voltar', instructors_path%>

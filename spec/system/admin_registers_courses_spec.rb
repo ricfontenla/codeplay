@@ -1,14 +1,6 @@
 require 'rails_helper'
 
 describe 'Admin registers courses' do
-  it 'from index page' do
-    visit root_path
-    click_on 'Cursos'
-
-    expect(page).to have_link('Registrar um Curso',
-                              href: new_course_path)
-  end
-
   it 'successfully' do
     visit root_path
     click_on 'Cursos'
