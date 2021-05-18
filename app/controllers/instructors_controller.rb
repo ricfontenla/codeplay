@@ -1,10 +1,11 @@
 class InstructorsController < ApplicationController
+  before_action :set_instructor, only: [:show, :edit, :update, :destroy]
+
   def index
     @instructors = Instructor.all
   end
 
   def show
-    @instructor = Instructor.find(params[:id])
   end
 
   def new
@@ -21,11 +22,9 @@ class InstructorsController < ApplicationController
   end
 
   def edit
-    @instructor = Instructor.find(params[:id])
   end
 
   def update
-    @instructor = Instructor.find(params[:id])
     if @instructor.update(instructor_params)
       flash[:notice] = 'Professor editado com sucesso'
       redirect_to @instructor
@@ -35,13 +34,17 @@ class InstructorsController < ApplicationController
   end
 
   def destroy
-    @instructor = Instructor.find(params[:id])
     @instructor.destroy
     flash[:notice] = 'Professor apagado com sucesso'
     redirect_to instructors_path
   end
 
   private
+
+  def set_instructor
+    @instructor = Instructor.find(params[:id])
+  end
+
   def instructor_params
     params.require(:instructor).permit(:name, :email, :bio, :profile_picture)
   end
