@@ -1,5 +1,7 @@
 <h1><%= @instructor.name %></h1>
-<p><%= image_tag @instructor.profile_picture %></p>
+<% if @instructor.profile_picture.attached? %>
+  <p><%= image_tag @instructor.profile_picture %></p>
+<% end %>
 <p><%= @instructor.bio %></p>
 <p><%= @instructor.email %></p>
 

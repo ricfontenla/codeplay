@@ -27,6 +27,7 @@ class InstructorsController < ApplicationController
   def update
     @instructor = Instructor.find(params[:id])
     if @instructor.update(instructor_params)
+      flash[:notice] = 'Professor editado com sucesso'
       redirect_to @instructor
     else
       render :edit
@@ -36,6 +37,7 @@ class InstructorsController < ApplicationController
   def destroy
     @instructor = Instructor.find(params[:id])
     @instructor.destroy
+    flash[:notice] = 'Professor apagado com sucesso'
     redirect_to instructors_path
   end
 
