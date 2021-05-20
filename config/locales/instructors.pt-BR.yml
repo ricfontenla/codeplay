@@ -9,6 +9,7 @@ pt-BR:
       success: 'Professor editado com sucesso'
     destroy:
       success: 'Professor apagado com sucesso'
+      fail: 'Este professor ainda possui cursos ativos'
   activerecord:
     models:
       instructor: 'Professor'

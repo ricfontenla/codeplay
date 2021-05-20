@@ -34,9 +34,14 @@ class InstructorsController < ApplicationController
   end
 
   def destroy
-    @instructor.destroy
-    flash[:notice] = t('.success')
-    redirect_to instructors_path
+    if @instructor.courses.blank?
+      @instructor.destroy
+      flash[:notice] = t('.success')
+      redirect_to instructors_path
+    else
+      flash[:notice] = t('.fail')
+      render :show 
+    end
   end
 
   private
