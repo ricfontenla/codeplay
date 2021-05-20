@@ -9,9 +9,15 @@
   <%= form.text_field :price %>
   <%= form.label :enrollment_deadline, 'Data limite de matrícula' %>
   <%= form.date_field :enrollment_deadline %>
+  <%= form.label :instructor_id, 'Professor' %>
+  <%= form.collection_select :instructor_id, @instructors, :id, :name %>
   <%= form.submit 'Criar curso' %>
+<% end %>
 
-  <% course.errors.each do |error| %>
-    <%= error.full_message %>
-  <% end %>
+<% if @course.errors.any? %>
+  <ul>
+    <% course.errors.each do |error| %>
+      <li><%= error.message %></li>
+    <% end %>
+  </ul>
 <% end %>

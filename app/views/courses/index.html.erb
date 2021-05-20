@@ -5,7 +5,7 @@
 <% @courses.each do |course| %>
   <h1><%= link_to course.name, course %></h1>
   <p><%= course.description %></p>
-  <p><%= number_to_currency course.price, unit: 'R$', separator: ',', delimiter: '.', format: '%u %n' %></p>
+  <p><%= number_to_currency course.price %></p>
 
 <% end %>
 

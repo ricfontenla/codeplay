@@ -25,6 +25,7 @@ describe 'Admin edits instructors' do
     expect(page).to have_content('sicrano@codeplay.com.br')
     expect(page).to have_content('Dev e fundador na Code Play')
     expect(page).to have_css("img[src*='profile2.jpg']")
+    expect(page).to have_content('Professor editado com sucesso')
   end
   
   it 'attributes cannot be blank' do
@@ -42,7 +43,6 @@ describe 'Admin edits instructors' do
   
     fill_in 'Nome', with: ''
     fill_in 'E-mail', with: ''
-    fill_in 'Descrição', with: ''
     click_on 'Cadastrar Professor'
 
     expect(page).to have_content('não pode ficar em branco', count: 2)

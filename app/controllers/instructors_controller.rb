@@ -15,6 +15,7 @@ class InstructorsController < ApplicationController
   def create
     @instructor = Instructor.new(instructor_params)
     if @instructor.save
+      flash[:notice] = 'Professor cadastrado com sucesso'
       redirect_to @instructor
     else
       render :new

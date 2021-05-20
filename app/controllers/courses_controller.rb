@@ -10,18 +10,22 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
+    @instructors = Instructor.all
   end
 
   def create
     @course = Course.new(course_params)
     if @course.save
+      flash[:notice] = 'Curso criado com sucesso'
       redirect_to @course
     else
+      @instructors = Instructor.all
       render :new
     end
   end
 
   def edit
+    @instructors = Instructor.all
   end
 
   def update
@@ -29,6 +33,7 @@ class CoursesController < ApplicationController
       flash[:notice] = 'Curso atualizado com sucesso'
       redirect_to @course
     else
+      @instructors = Instructor.all
       render :edit
     end
   end
@@ -46,7 +51,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:name, :description, :code, 
-                                   :price, :enrollment_deadline)
+    params.require(:course).permit(:name, :description, :code, :price, 
+                                   :enrollment_deadline, :instructor_id)
   end
 end

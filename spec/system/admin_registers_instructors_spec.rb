@@ -17,6 +17,7 @@ describe 'Admin registers instructors' do
     expect(page).to have_content('fulano@codeplay.com')
     expect(page).to have_content('Dev e instrutor na Code Play')
     expect(page).to have_css("img[src*='profile1.jpeg']")
+    expect(page).to have_content('Professor cadastrado com sucesso')
   end
 
   it 'attrubutes cannot be blank' do
@@ -24,9 +25,6 @@ describe 'Admin registers instructors' do
     click_on 'Professores'
     click_on 'Cadastrar um Professor'
 
-    fill_in 'Nome', with: ''
-    fill_in 'E-mail', with: ''
-    fill_in 'Descrição', with: ''
     click_on 'Cadastrar Professor'
 
     expect(page).to have_content('não pode ficar em branco', count: 2)
