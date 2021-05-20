@@ -14,11 +14,11 @@
   <%= form.submit button_text %>
 <% end %>
 
-<% if @course.errors.any? %>
+<% if course.errors.any? %>
 <p>Foram encontrados <%= course.errors.count %> error(s): </p>
   <ul>
     <% course.errors.each do |error| %>
-      <li><%= error.message %></li>
+      <li><%= error.full_message %></li>
     <% end %>
   </ul>
 <% end %>

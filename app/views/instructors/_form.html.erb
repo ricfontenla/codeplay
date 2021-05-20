@@ -10,7 +10,12 @@
 
   <%= form.submit button_text %>
 
-  <% instructor.errors.each do |error| %>
-    <%= error.full_message %>
+  <% if @instructor.errors.any? %>
+    <p>Foram encontrados <%= instructor.errors.count %> error(s): </p>
+    <ul>
+      <% instructor.errors.each do |error|%>
+        <li><%= error.full_message %></li>
+      <% end %>
+      </ul>
   <% end %>
 <% end %>
