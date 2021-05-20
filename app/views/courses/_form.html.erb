@@ -1,20 +1,21 @@
 <%= form_with model: course do |form| %>
-  <%= form.label :name, 'Nome' %>
+  <%= form.label :name %>
   <%= form.text_field :name %>
-  <%= form.label :description, 'Descrição' %>
+  <%= form.label :description %>
   <%= form.text_area :description %>
-  <%= form.label :code, 'Código' %>
+  <%= form.label :code %>
   <%= form.text_field :code %>
-  <%= form.label :price, 'Preço' %>
+  <%= form.label :price %>
   <%= form.text_field :price %>
-  <%= form.label :enrollment_deadline, 'Data limite de matrícula' %>
+  <%= form.label :enrollment_deadline %>
   <%= form.date_field :enrollment_deadline %>
-  <%= form.label :instructor_id, 'Professor' %>
+  <%= form.label :instructor_id %>
   <%= form.collection_select :instructor_id, @instructors, :id, :name %>
-  <%= form.submit 'Criar curso' %>
+  <%= form.submit button_text %>
 <% end %>
 
 <% if @course.errors.any? %>
+<p>Foram encontrados <%= course.errors.count %> error(s): </p>
   <ul>
     <% course.errors.each do |error| %>
       <li><%= error.message %></li>

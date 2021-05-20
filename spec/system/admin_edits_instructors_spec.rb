@@ -18,7 +18,7 @@ describe 'Admin edits instructors' do
     fill_in 'E-mail', with: 'sicrano@codeplay.com.br'
     fill_in 'Descrição', with: 'Dev e fundador na Code Play'
     attach_file 'Foto', Rails.root.join('spec/fixtures/profile2.jpg')
-    click_on 'Cadastrar Professor'
+    click_on 'Salvar Professor'
 
     expect(current_path).to eq(instructor_path(instructor))
     expect(page).to have_content('Sicrano Sicrano')
@@ -43,7 +43,7 @@ describe 'Admin edits instructors' do
   
     fill_in 'Nome', with: ''
     fill_in 'E-mail', with: ''
-    click_on 'Cadastrar Professor'
+    click_on 'Salvar Professor'
 
     expect(page).to have_content('não pode ficar em branco', count: 2)
   end
@@ -69,7 +69,7 @@ describe 'Admin edits instructors' do
     click_on 'Editar'
 
     fill_in 'E-mail', with: 'sicrano@codeplay.com.br'
-    click_on 'Cadastrar Professor'
+    click_on 'Salvar Professor'
 
     expect(page).to have_content('já está em uso')
   end

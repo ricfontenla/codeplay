@@ -24,7 +24,6 @@ describe 'Admin registers courses' do
     expect(page).to have_content('R$ 30,00')
     expect(page).to have_content('22/12/2033')
     expect(page).to have_content('Fulano Fulano')
-    expect(page).to have_content('Curso criado com sucesso')
     expect(page).to have_link(href: courses_path)
   end
 

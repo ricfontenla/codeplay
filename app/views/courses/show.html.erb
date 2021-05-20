@@ -1,14 +1,15 @@
 <h1><%= @course.name %></h1>
 <dl>
-  <dt>Descrição</dt>
+  <dt><%= Course.human_attribute_name(:description) %></dt>
   <dd><%= @course.description %></dd>
-  <dt>Código</dt>
+  <dt><%= Course.human_attribute_name(:code) %></dt>
   <dd><%= @course.code %></dd>
-  <dt>Preço</dt>
+  <dt><%= Course.human_attribute_name(:price) %></dt>
   <dd><%= number_to_currency @course.price %></dd>
-  <dt>Data limite de matrícula</dt>
+  <dt><%= Course.human_attribute_name(:enrollment_deadline) %></dt>
   <dd><%= I18n.localize @course.enrollment_deadline %></dd>
-  <dt><%= @course.instructor.name %></dt>
+  <dt><%= Course.human_attribute_name(:instructor_id) %></dt>
+  <dd><%= @course.instructor.name %></dt>
 </dl>
 
 <%= link_to 'Editar', edit_course_path(@course) %>

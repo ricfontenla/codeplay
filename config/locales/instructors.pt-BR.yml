@@ -1,0 +1,20 @@
+---
+pt-BR:
+  instructors:
+    new:
+      title: 'Novo Professor'
+    edit:
+      title: 'Editar Professor'
+    update:
+      success: 'Professor editado com sucesso'
+    destroy:
+      success: 'Professor apagado com sucesso'
+  activerecord:
+    models:
+      instructor: 'Professor'
+    attributes:
+      instructor:
+        name: 'Nome'
+        email: 'E-mail'
+        bio: 'Descrição'
+        profile_picture: 'Foto de perfil'

@@ -23,7 +23,7 @@ describe 'Admin edits course' do
     fill_in 'Preço', with: '30'
     fill_in 'Data limite de matrícula', with: Date.current
     select 'Sicrano Sicrano', from: 'Professor'
-    click_on 'Criar curso'
+    click_on 'Salvar curso'
 
     expect(page).to have_content('Ruby on Rails')
     expect(page).to have_content('Um curso de Ruby on Rails')
@@ -51,7 +51,7 @@ describe 'Admin edits course' do
     fill_in 'Nome', with: ''
     fill_in 'Código', with: ''
     fill_in 'Preço', with: ''
-    click_on 'Criar curso'
+    click_on 'Salvar curso'
 
     expect(page).to have_content('não pode ficar em branco', count: 3)
   end
@@ -76,7 +76,7 @@ describe 'Admin edits course' do
     click_on 'Editar'
 
     fill_in 'Código', with: 'RUBYONRAILS'
-    click_on 'Criar curso'
+    click_on 'Salvar curso'
 
     expect(page).to have_content('já está em uso')
   end

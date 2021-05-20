@@ -1,5 +1,5 @@
-<h1>Criar curso</h1>
+<h1><%= t '.title' %></h1>
 
-<%= render 'form', course: @course %>
+<%= render 'form', course: @course, button_text: 'Criar curso' %>
 
 <%= link_to 'Cancelar', courses_path %>

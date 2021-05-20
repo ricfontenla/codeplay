@@ -1,5 +1,5 @@
-<h1>Novo Professor</h1>
+<h1><%= t '.title' %></h1>
 
-<%= render 'form', instructor: @instructor %>
+<%= render 'form', instructor: @instructor, button_text: 'Cadastrar Professor' %>
 
 <%= link_to 'Cancelar', instructors_path %>
