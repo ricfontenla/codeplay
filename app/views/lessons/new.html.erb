@@ -1,7 +1,13 @@
 <h1><%= t '.title' %></h1>
 
-<%= render 'form', course: @course, lesson: @lesson, 
-                   botton_text: 'Cadastrar aula', 
-                   url: course_lessons_path(@course) %>
+<div>
+  <%= render 'form', course: @course, lesson: @lesson, 
+                    botton_text: 'Cadastrar aula', 
+                    url: course_lessons_path(@course) %>
+</div>
 
-<%= link_to 'Cancelar', course_path(@course) %>
+<div>
+  <ul>
+    <li><%= link_to 'Cancelar', course_path(@course) %></li>
+  </ul>
+</div>

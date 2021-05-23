@@ -1,11 +1,19 @@
+<h1><%= t '.title' %></h1>
+
 <% if @instructors.empty? %>
-  <p>Nenhum professor cadastrado</p>
+  <p><%= t '.empty' %> </p>
 <% end %>
 
 <% @instructors.each do |instructor| %>
-  <h2><%= link_to instructor.name, instructor %></h2>
-  <p><%= instructor.bio %></p>
+  <div>
+    <h2><%= link_to instructor.name, instructor %></h2>
+    <%= instructor.bio %>
+  </div>
 <% end %>
 
-<%= link_to 'Cadastrar um Professor', new_instructor_path %>
-<%= link_to 'Voltar', root_path%>
+<div>
+  <ul>
+    <li><%= link_to 'Cadastrar um Professor', new_instructor_path %></li>
+    <li><%= link_to 'Voltar', root_path%></li>
+  </ul>
+</div>

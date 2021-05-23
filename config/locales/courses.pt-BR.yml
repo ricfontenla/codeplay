@@ -1,6 +1,12 @@
 ---
 pt-BR:
   courses:
+    index:
+      title: 'Cursos cadastrados'
+      empty: 'Nenhum curso disponível'
+    show:
+      title2: 'Aulas neste curso'
+      lessons_empty: 'Não há aulas cadastradas neste curso'
     new:
       title: 'Registrar um teste'
     edit:

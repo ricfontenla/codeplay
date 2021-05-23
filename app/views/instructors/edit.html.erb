@@ -1,5 +1,10 @@
-<h1><%= t '.title' %>></h1>
+<h1><%= t '.title' %></h1>
 
-<%= render 'form', instructor: @instructor, button_text: 'Salvar Professor' %>
+<%= render 'form', instructor: @instructor, 
+                   button_text: 'Salvar Professor' %>
 
-<%= link_to 'Cancelar', instructor_path %>
+<div>
+  <ul>
+    <li><%= link_to 'Cancelar', instructor_path %></li>
+  </ul>
+</div>

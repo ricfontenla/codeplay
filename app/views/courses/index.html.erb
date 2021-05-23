@@ -1,13 +1,18 @@
+<h1><%= t '.title' %></h1>
+
 <% if @courses.empty? %>
-  <p>Nenhum curso disponível</p>
+  <p><%= t '.empty' %></p>
 <% end %>
 
 <% @courses.each do |course| %>
-  <h1><%= link_to course.name, course %></h1>
+  <h2><%= link_to course.name, course %></h2>
   <p><%= course.description %></p>
   <p><%= number_to_currency course.price %></p>
-
 <% end %>
 
-<%= link_to 'Registrar um Curso', new_course_path %>
-<%= link_to 'Voltar', root_path %>
+<div>
+  <ul>
+    <li><%= link_to 'Registrar um Curso', new_course_path %></li>
+    <li><%= link_to 'Voltar', root_path %></li>
+  </ul>
+</div>

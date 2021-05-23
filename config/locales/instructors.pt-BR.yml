@@ -1,6 +1,9 @@
 ---
 pt-BR:
   instructors:
+    index:
+      title: 'Professores cadastrados'
+      empty: 'Nenhum professor cadastrado'
     new:
       title: 'Novo Professor'
     edit:

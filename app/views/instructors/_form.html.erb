@@ -1,16 +1,24 @@
 <%= form_with model: instructor do |form| %>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-  <%= form.label :email %>
-  <%= form.text_field :email %>
-  <%= form.label :bio %>
-  <%= form.text_area :bio %>
-  <%= form.label :profile_picture %>
-  <%= form.file_field :profile_picture %>
+  <div >
+    <p><%= form.label :name %></p>
+    <%= form.text_field :name %>
 
-  <%= form.submit button_text %>
+    <p><%= form.label :email %></p>
+    <%= form.text_field :email %>
 
-  <% if @instructor.errors.any? %>
+    <p><%= form.label :bio %></p>
+    <%= form.text_area :bio %>
+
+    <p><%= form.label :profile_picture %></p>
+    <%= form.file_field :profile_picture %>
+
+    <br/>
+    <p><%= form.submit button_text %><p>
+  </div>
+<% end %>
+
+<div>
+  <% if instructor.errors.any? %>
     <p>Foram encontrados <%= instructor.errors.count %> error(s): </p>
     <ul>
       <% instructor.errors.each do |error|%>
@@ -18,4 +26,4 @@
       <% end %>
       </ul>
   <% end %>
-<% end %>
+</div>
