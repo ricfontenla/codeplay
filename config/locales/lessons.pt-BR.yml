@@ -1,0 +1,15 @@
+---
+pt-BR:
+  lessons:
+    new:
+      title: 'Nova aula'
+    edit:
+      title: 'Editar aula'
+  activerecord:
+    models:
+      lesson: 'Aula'
+    attributes:
+      lesson:
+        name: 'Nome'
+        content: 'Conteúdo'
+        course_id: 'Curso'

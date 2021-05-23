@@ -1,0 +1,16 @@
+<h1><%= t '.title' %></h1>
+
+<%= form_with model: [@course, @course.lessons.new] do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :content %>
+  <%= form.text_area :content %>
+
+  <%= form.submit 'Cadastrar aula' %>
+<% end %>
+
+<% if @lesson.errors.any? %>
+  <% @lesson.errors.each do |error|%>
+    <%= error.full_message %>
+  <% end %>
+<% end %>

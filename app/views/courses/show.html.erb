@@ -14,4 +14,16 @@
 
 <%= link_to 'Editar', edit_course_path(@course) %>
 <%= link_to 'Deletar', course_path(@course), method: :delete %>
+<%= link_to 'Cadastrar uma aula', new_course_lesson_path(@course)%>
 <%= link_to 'Voltar', courses_path %>
+
+<h2>Aulas neste curso:</h2>
+<% if @course.lessons.any? %>
+  <% @course.lessons.each do |lesson| %>
+    <%= lesson.name %>
+    <%= lesson.content %>
+    <%= link_to 'Editar aula', edit_course_lesson_path(lesson) %>
+  <% end %>
+<% else %>
+  <p>Não há aulas cadastradas neste curso</p>
+<% end %>
