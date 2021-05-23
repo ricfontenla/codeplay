@@ -5,6 +5,10 @@ pt-BR:
       title: 'Nova aula'
     edit:
       title: 'Editar aula'
+    update:
+      success: 'Aula atualizada com sucesso'
+    destroy:
+      success: 'Aula deletada com sucesso'
   activerecord:
     models:
       lesson: 'Aula'

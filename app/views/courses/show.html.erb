@@ -12,8 +12,8 @@
   <dd><%= @course.instructor.name %></dt>
 </dl>
 
-<%= link_to 'Editar', edit_course_path(@course) %>
-<%= link_to 'Deletar', course_path(@course), method: :delete %>
+<%= link_to 'Editar curso', edit_course_path(@course) %>
+<%= link_to 'Deletar curso', course_path(@course), method: :delete %>
 <%= link_to 'Cadastrar uma aula', new_course_lesson_path(@course)%>
 <%= link_to 'Voltar', courses_path %>
 
@@ -23,6 +23,7 @@
     <%= lesson.name %>
     <%= lesson.content %>
     <%= link_to 'Editar aula', edit_course_lesson_path(lesson) %>
+    <%= link_to 'Deletar', course_lesson_path(lesson), method: :delete %>
   <% end %>
 <% else %>
   <p>Não há aulas cadastradas neste curso</p>

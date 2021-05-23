@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  before_action :set_course, only: [:new, :create, :edit, :update]
+  before_action :set_course
   def new
     @lesson = Lesson.new
   end
@@ -22,10 +22,18 @@ class LessonsController < ApplicationController
   def update
     @lesson = Lesson.find(params[:id])
     if @lesson.update(lesson_params)
+      flash[:notice] = t '.success'
       redirect_to @course
     else
       render :edit
     end
+  end
+
+  def destroy
+    lesson = Lesson.find(params[:id])
+    lesson.destroy
+    redirect_to @course
+    flash[:notice] = 'Aula deletada com sucesso'
   end
 
   private

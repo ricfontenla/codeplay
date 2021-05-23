@@ -21,5 +21,26 @@ describe 'admin edits lessons' do
 
     expect(page).to have_content('Tipos Primitivos')
     expect(page).to have_content('Tipagem em Ruby: Integer, Float, String, Boolean')
+    expect(page).to have_content('Aula atualizada com sucesso')
+  end
+
+  it 'cannot be blank' do
+    instructor = Instructor.create!(name: 'Fulano Fulano', 
+                                    email: 'fulano@codeplay.com.br', 
+                                    bio: 'Dev e instrutor na Code Play')
+    course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
+                            code: 'RUBYBASIC', price: 10,
+                            enrollment_deadline: '22/12/2033', 
+                            instructor: instructor)
+    Lesson.create!(name: 'Lógica de Programação', 
+                   content: 'Revisão de conceitos de lógica de programação', 
+                   course: course)
+
+    visit course_path(course)
+    click_on 'Editar aula'
+    fill_in 'Nome', with: ''
+    click_on 'Salvar aula'
+
+    expect(page).to have_content('não pode ficar em branco')
   end
 end

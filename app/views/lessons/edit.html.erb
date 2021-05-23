@@ -1,16 +1,6 @@
 <h1><%= t '.title' %></h1>
 
-<%= form_with url:course_lesson_path(@course, @lesson), model: @lesson do |form| %>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-  <%= form.label :content %>
-  <%= form.text_area :content %>
+<%= render 'form', course: @course, lesson: @lesson, 
+                   botton_text: 'Salvar aula', 
+                   url: course_lesson_path(@course, @lesson) %>
 
-  <%= form.submit 'Salvar aula' %>
-<% end %>
-
-<% if @lesson.errors.any? %>
-  <% @lesson.errors.each do |error|%>
-    <%= error.full_message %>
-  <% end %>
-<% end %>
