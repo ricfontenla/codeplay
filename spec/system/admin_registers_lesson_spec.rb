@@ -15,12 +15,13 @@ describe 'Admin registers lessons' do
     click_on course.name
     click_on 'Cadastrar uma aula'
     fill_in 'Nome', with: 'Lógica de Programação'
+    fill_in'Duração', with: 50
     fill_in 'Conteúdo', with: 'Revisão de lógica de programação em Ruby'
     click_on 'Cadastrar aula'
    
     expect(current_path).to eq course_path(course)
     expect(page).to have_content('Lógica de Programação')
-    expect(page).to have_content('Revisão de lógica de programação em Ruby')
+    expect(page).to have_content('50 minutos')
   end
 
   it 'and name cannot be blank' do

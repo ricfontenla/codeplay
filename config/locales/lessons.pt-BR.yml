@@ -9,6 +9,10 @@ pt-BR:
       success: 'Aula atualizada com sucesso'
     destroy:
       success: 'Aula deletada com sucesso'
+    plurals:
+      duration:
+        one: '1 minuto'
+        other: '%{count} minutos'
   activerecord:
     models:
       lesson: 'Aula'
@@ -16,4 +20,5 @@ pt-BR:
       lesson:
         name: 'Nome'
         content: 'Conteúdo'
+        duration: 'Duração'
         course_id: 'Curso'

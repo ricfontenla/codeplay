@@ -11,7 +11,7 @@ describe 'admin edits lessons' do
                             instructor: instructor)
     lesson = Lesson.create!(name: 'Lógica de Programação', 
                             content: 'Conceitos de lógica de programação', 
-                            course: course)
+                            duration: 50, course: course)
 
     visit root_path
     click_on 'Cursos'
@@ -20,11 +20,12 @@ describe 'admin edits lessons' do
     click_on 'Editar aula'
     fill_in 'Nome', with: 'Tipos Primitivos'
     fill_in 'Conteúdo', with: 'Tipagem em Ruby: Integer, Float, String, Boolean'
+    fill_in 'Duração', with: 40
     click_on 'Salvar aula'
 
     expect(page).to have_link('Tipos Primitivos', 
                                href: course_lesson_path(course, lesson))
-    expect(page).to have_content('Tipagem em Ruby: Integer, Float, String, Boolean')
+    expect(page).to have_content('40 minutos')
     expect(page).to have_content('Aula atualizada com sucesso')
   end
 
@@ -38,15 +39,16 @@ describe 'admin edits lessons' do
                             instructor: instructor)
     lesson = Lesson.create!(name: 'Lógica de Programação', 
                             content: 'Conceitos de lógica de programação', 
-                            course: course)
+                            duration: 50, course: course)
 
     visit course_lesson_path(course, lesson)
     click_on 'Editar aula'
     fill_in 'Nome', with: ''
+    fill_in 'Duração', with: ''
     click_on 'Salvar aula'
 
     expect(page).to have_content('Editar Aula')
-    expect(page).to have_content('não pode ficar em branco')
+    expect(page).to have_content('não pode ficar em branco', count: 2)
     expect(page).to have_link('Cancelar', href: course_path(course))
   end
 end

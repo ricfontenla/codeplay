@@ -11,10 +11,10 @@ describe 'Admin view lessons' do
                             instructor: instructor)
     lesson1 = Lesson.create!(name: 'Lógica de Programação', 
                              content: 'Conceitos de lógica de programação', 
-                             course: course)
+                             duration: 40, course: course)
     lesson2 = Lesson.create!(name: 'Tipos Primitivos', 
                              content: 'Integer, Float, String, Boolean', 
-                             course: course)
+                             duration: 50 ,course: course)
 
     visit root_path
     click_on 'Cursos'
@@ -22,9 +22,9 @@ describe 'Admin view lessons' do
 
     expect(page).to have_content('Aulas neste curso:')
     expect(page).to have_content('Lógica de Programação')
-    expect(page).to have_content('Conceitos de lógica de programação')
+    expect(page).to have_content('40 minutos')
     expect(page).to have_content('Tipos Primitivos')
-    expect(page).to have_content('Integer, Float, String, Boolean')
+    expect(page).to have_content('50 minutos')
   end
 
   it 'and view details' do
@@ -37,10 +37,10 @@ describe 'Admin view lessons' do
                             instructor: instructor)
     lesson = Lesson.create!(name: 'Lógica de Programação', 
                             content: 'Conceitos de lógica de programação', 
-                            course: course)
+                            duration: 40, course: course)
     Lesson.create!(name: 'Tipos Primitivos', 
                    content: 'Integer, Float, String, Boolean', 
-                   course: course)
+                   duration: 50, course: course)
 
     visit course_path(course)
     click_on lesson.name
@@ -48,6 +48,7 @@ describe 'Admin view lessons' do
     expect(current_path).to eq course_lesson_path(course, lesson)
     expect(page).to have_content(lesson.name)
     expect(page).to have_content(lesson.content)
+    expect(page).to have_content('40 minutos')
     expect(page).to have_link('Voltar', href: course_path(course))
   end
 

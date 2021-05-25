@@ -28,7 +28,7 @@
   <% @course.lessons.each do |lesson| %>
     <dl>
       <dt><b><%= link_to lesson.name, course_lesson_path(@course, lesson) %></b></dt>
-      <dd><%= lesson.content %></dd>
+      <dd><%= t('lessons.plurals.duration', count: lesson.duration) %></dd>
     </dl>
   <% end %>
 <% else %>

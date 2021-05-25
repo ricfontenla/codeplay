@@ -1,6 +1,8 @@
 <div>
   <h1><%= @lesson.name %></h1>
 
+  <p><%= t('lessons.plurals.duration', count: @lesson.duration) %></p>
+
   <p><%= @lesson.content %></p>
 </div>
 

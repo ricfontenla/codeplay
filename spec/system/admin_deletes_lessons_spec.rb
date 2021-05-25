@@ -11,7 +11,7 @@ describe 'Admin deletes lesson' do
                             instructor: instructor)
     lesson = Lesson.create!(name: 'Lógica de Programação', 
                             content: 'Conceitos de lógica de programação', 
-                            course: course)
+                            duration:50, course: course)
 
     visit course_path(course)
     click_on lesson.name    

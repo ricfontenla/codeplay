@@ -3,6 +3,9 @@
     <p><%= form.label :name %></p>
     <%= form.text_field :name %>
 
+    <p><%= form.label :duration %></p>
+    <%= form.number_field :duration, step: 1, min: 1 %>
+
     <p><%= form.label :content %></p>
     <%= form.text_area :content %>
 
