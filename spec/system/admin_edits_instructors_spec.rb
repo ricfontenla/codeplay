@@ -11,7 +11,7 @@ describe 'Admin edits instructors' do
             
     visit root_path
     click_on 'Professores'
-    click_on 'Fulano Fulano'
+    click_on instructor.name
     click_on 'Editar'
     
     fill_in 'Nome', with: 'Sicrano Sicrano'
@@ -36,16 +36,16 @@ describe 'Admin edits instructors' do
                 .attach(io: File.open('spec/fixtures/profile1.jpeg'), 
                         filename: 'profile1.jpeg')
 
-    visit root_path
-    click_on 'Professores'
-    click_on 'Fulano Fulano'
+    visit instructor_path(instructor)
     click_on 'Editar'
   
     fill_in 'Nome', with: ''
     fill_in 'E-mail', with: ''
     click_on 'Salvar Professor'
 
+    expect(page).to have_content('Editar Professor')
     expect(page).to have_content('não pode ficar em branco', count: 2)
+    expect(page).to have_link('Cancelar', href: instructor_path(instructor))
   end
 
   it 'and email must be uniq' do
@@ -63,31 +63,14 @@ describe 'Admin edits instructors' do
                           filename: 'profile2.jpg')
               
 
-    visit root_path
-    click_on 'Professores'
-    click_on 'Fulano Fulano'
+    visit instructor_path(instructor1)
     click_on 'Editar'
 
     fill_in 'E-mail', with: 'sicrano@codeplay.com.br'
     click_on 'Salvar Professor'
 
+    expect(page).to have_content('Editar Professor')
     expect(page).to have_content('já está em uso')
-  end
-
-  it 'and cancel' do
-    instructor = Instructor.create!(name: 'Fulano Fulano', 
-                                    email: 'fulano@codeplay.com.br', 
-                                    bio: 'Dev e instrutor na Code Play')
-    instructor.profile_picture
-                .attach(io: File.open('spec/fixtures/profile1.jpeg'), 
-                        filename: 'profile1.jpeg')
-
-    visit root_path
-    click_on 'Professores'
-    click_on 'Fulano Fulano'
-    click_on 'Editar'
-
-
-    expect(page).to have_link(href: instructor_path(instructor))
+    expect(page).to have_link('Cancelar', href: instructor_path(instructor1))
   end
 end

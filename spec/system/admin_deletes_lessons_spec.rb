@@ -9,14 +9,14 @@ describe 'Admin deletes lesson' do
                             code: 'RUBYBASIC', price: 10,
                             enrollment_deadline: '22/12/2033', 
                             instructor: instructor)
-    Lesson.create!(name: 'Lógica de Programação', 
-                   content: 'Revisão de conceitos de lógica de programação', 
-                   course: course)
+    lesson = Lesson.create!(name: 'Lógica de Programação', 
+                            content: 'Conceitos de lógica de programação', 
+                            course: course)
 
-    visit courses_path(course)
-    click_on course.name
-    click_on 'Deletar'
-
+    visit course_path(course)
+    click_on lesson.name    
+  
+    expect {click_on 'Deletar' }.to change { Lesson.count }.by(-1)
     expect(page).to have_content('Não há aulas cadastradas neste curso')
     expect(page).to have_content('Aula deletada com sucesso')
   end

@@ -8,7 +8,7 @@ describe 'Admin registers courses' do
 
     visit root_path
     click_on 'Cursos'
-    click_on 'Registrar um Curso'
+    click_on 'Cadastrar um Curso'
     fill_in 'Nome', with: 'Ruby on Rails'
     fill_in 'Descrição', with: 'Um curso de Ruby on Rails'
     fill_in 'Código', with: 'RUBYONRAILS'
@@ -23,17 +23,18 @@ describe 'Admin registers courses' do
     expect(page).to have_content('RUBYONRAILS')
     expect(page).to have_content('R$ 30,00')
     expect(page).to have_content('22/12/2033')
-    expect(page).to have_content('Fulano Fulano')
-    expect(page).to have_link(href: courses_path)
+    expect(page).to have_link('Fulano Fulano', 
+                               href: instructor_path(instructor))
+    expect(page).to have_link('Voltar', href: courses_path)
   end
 
   it 'and attributes cannot be blank' do
-    visit root_path
-    click_on 'Cursos'
-    click_on 'Registrar um Curso'
+    visit new_course_path
     click_on 'Criar curso'
 
+    expect(page).to have_content('Novo Curso')
     expect(page).to have_content('não pode ficar em branco', count: 3)
+    expect(page).to have_link('Cancelar', href: courses_path)
   end
 
   it 'and code must be unique' do
@@ -45,12 +46,12 @@ describe 'Admin registers courses' do
                    enrollment_deadline: '22/12/2033', 
                    instructor: instructor)
 
-    visit root_path
-    click_on 'Cursos'
-    click_on 'Registrar um Curso'
+    visit new_course_path
     fill_in 'Código', with: 'RUBYBASIC'
     click_on 'Criar curso'
 
+    expect(page).to have_content('Novo Curso')
     expect(page).to have_content('já está em uso')
+    expect(page).to have_link('Cancelar', href: courses_path)
   end
 end

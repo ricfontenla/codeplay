@@ -2,9 +2,9 @@
 pt-BR:
   lessons:
     new:
-      title: 'Nova aula'
+      title: 'Nova Aula'
     edit:
-      title: 'Editar aula'
+      title: 'Editar Aula'
     update:
       success: 'Aula atualizada com sucesso'
     destroy:

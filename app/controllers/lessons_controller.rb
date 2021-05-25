@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  before_action :set_lesson, only: [:edit, :update, :destroy]
+  before_action :set_lesson, only: [:show, :edit, :update, :destroy]
   before_action :get_course
   def new
     @lesson = Lesson.new
@@ -12,6 +12,9 @@ class LessonsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
   end
 
   def edit
@@ -34,7 +37,7 @@ class LessonsController < ApplicationController
 
   private
   def lesson_params
-    params.require(:lesson).permit(:name, :content, :course_id)
+    params.require(:lesson).permit(:name, :content)
   end
 
   def set_lesson

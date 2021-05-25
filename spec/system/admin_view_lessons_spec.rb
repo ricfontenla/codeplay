@@ -9,12 +9,12 @@ describe 'Admin view lessons' do
                             code: 'RUBYBASIC', price: 10,
                             enrollment_deadline: '22/12/2033', 
                             instructor: instructor)
-    Lesson.create!(name: 'Lógica de Programação', 
-                   content: 'Revisão de conceitos de lógica de programação', 
-                   course: course)
-    Lesson.create!(name: 'Tipos Primitivos', 
-                   content: 'Tipagem em Ruby: Integer, Float, String, Boolean', 
-                   course: course)
+    lesson1 = Lesson.create!(name: 'Lógica de Programação', 
+                             content: 'Conceitos de lógica de programação', 
+                             course: course)
+    lesson2 = Lesson.create!(name: 'Tipos Primitivos', 
+                             content: 'Integer, Float, String, Boolean', 
+                             course: course)
 
     visit root_path
     click_on 'Cursos'
@@ -22,11 +22,36 @@ describe 'Admin view lessons' do
 
     expect(page).to have_content('Aulas neste curso:')
     expect(page).to have_content('Lógica de Programação')
+    expect(page).to have_content('Conceitos de lógica de programação')
     expect(page).to have_content('Tipos Primitivos')
-    expect(page).to have_content('Tipagem em Ruby: Integer, Float, String, Boolean')
+    expect(page).to have_content('Integer, Float, String, Boolean')
   end
 
-  it 'and no registered lessons' do
+  it 'and view details' do
+    instructor = Instructor.create!(name: 'Fulano Fulano', 
+                                    email: 'fulano@codeplay.com.br', 
+                                    bio: 'Dev e instrutor na Code Play')
+    course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
+                            code: 'RUBYBASIC', price: 10,
+                            enrollment_deadline: '22/12/2033', 
+                            instructor: instructor)
+    lesson = Lesson.create!(name: 'Lógica de Programação', 
+                            content: 'Conceitos de lógica de programação', 
+                            course: course)
+    Lesson.create!(name: 'Tipos Primitivos', 
+                   content: 'Integer, Float, String, Boolean', 
+                   course: course)
+
+    visit course_path(course)
+    click_on lesson.name
+
+    expect(current_path).to eq course_lesson_path(course, lesson)
+    expect(page).to have_content(lesson.name)
+    expect(page).to have_content(lesson.content)
+    expect(page).to have_link('Voltar', href: course_path(course))
+  end
+
+  it 'and no lessons available' do
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')

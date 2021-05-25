@@ -10,7 +10,7 @@
   <dt><b><%= Course.human_attribute_name(:enrollment_deadline) %>:</b></dt>
   <dd><%= I18n.localize @course.enrollment_deadline %></dd>
   <dt><b><%= Course.human_attribute_name(:instructor_id) %>:</b></dt>
-  <dd><%= @course.instructor.name %></dt>
+  <dd><%= link_to @course.instructor.name, instructor_path(@course.instructor) %></dt>
 </dl>
 
 <div>
@@ -27,15 +27,8 @@
 <% if @course.lessons.any? %>
   <% @course.lessons.each do |lesson| %>
     <dl>
-      <dt><b><%= lesson.name %></b></dt>
+      <dt><b><%= link_to lesson.name, course_lesson_path(@course, lesson) %></b></dt>
       <dd><%= lesson.content %></dd>
-      <ul>
-        <li><%= link_to 'Editar aula', edit_course_lesson_path(lesson) %></li>
-        <li>
-            <%= link_to 'Deletar', course_lesson_path(lesson), 
-            method: :delete %>
-        </li>
-      </ul>
     </dl>
   <% end %>
 <% else %>
