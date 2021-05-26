@@ -1,25 +1,27 @@
 <%= form_with model: course do |form| %>
   <div>
-    <p><%= form.label :name %></p>
-    <%= form.text_field :name %>
+    <dl>
+      <dt><%= form.label :name %></dt>
+      <dd><%= form.text_field :name %></dd>
 
-    <p><%= form.label :description %></p>
-    <%= form.text_area :description %>
+      <dt><%= form.label :description %></dt>
+      <dd><%= form.text_area :description %></dd>
 
-    <p><%= form.label :code %></p>
-    <%= form.text_field :code %>
+      <dt><%= form.label :code %></dt>
+      <dd><%= form.text_field :code %></dd>
 
-    <p><%= form.label :price %></p>
-    <%= form.text_field :price %>
+      <dt><%= form.label :price %></dt>
+      <dd><%= form.text_field :price %></dd>
 
-    <p><%= form.label :enrollment_deadline %></p>
-    <%= form.date_field :enrollment_deadline %>
+      <dt><%= form.label :enrollment_deadline %></dt>
+      <dd><%= form.date_field :enrollment_deadline %></dd>
 
-    <p><%= form.label :instructor_id %></p>
-    <%= form.collection_select :instructor_id, instructors, :id, :name %>
-  
-    <br/>
-    <p><%= form.submit button_text %></p>
+      <dt><%= form.label :instructor_id %></dt>
+      <dd><%= form.collection_select :instructor_id, instructors, :id, :name %><dd>
+    
+      <br/>
+      <%= form.submit button_text, class: "btn btn-dark" %>
+    </dl>
   </div>
 <% end %>
   

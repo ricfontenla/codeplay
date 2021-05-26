@@ -14,13 +14,13 @@
 </dl>
 
 <div>
-  <ul>
-    <li><%= link_to 'Editar curso', edit_course_path(@course) %></li>
-    <li><%= link_to 'Deletar curso', course_path(@course), 
-                                     method: :delete %></li>
-    <li><%= link_to 'Cadastrar uma aula', new_course_lesson_path(@course) %></li>
-    <li><%= link_to 'Voltar', courses_path %></li>
-  </ul>
+  <%= link_to 'Editar curso', edit_course_path(@course), class: "btn btn-dark" %>
+  <%= link_to 'Deletar curso', course_path(@course), method: :delete, 
+                               data: { confirm: "Tem certeza?" }, 
+                               class: "btn btn-dark" %>
+  <%= link_to 'Cadastrar uma aula', new_course_lesson_path(@course), 
+                                    class: "btn btn-dark" %>
+  <%= link_to 'Voltar', courses_path, class: "btn btn-dark" %>
 </div>
 
 <h2><%= t '.title2' %>:</h2>

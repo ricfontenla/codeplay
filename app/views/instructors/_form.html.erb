@@ -1,19 +1,21 @@
 <%= form_with model: instructor do |form| %>
-  <div >
-    <p><%= form.label :name %></p>
-    <%= form.text_field :name %>
+  <div>
+    <dl>
+      <dt><%= form.label :name %></dt>
+      <dd><%= form.text_field :name %></dd>
 
-    <p><%= form.label :email %></p>
-    <%= form.text_field :email %>
+      <dt><%= form.label :email %></dt>
+      <dd><%= form.text_field :email %></dd>
 
-    <p><%= form.label :bio %></p>
-    <%= form.text_area :bio %>
+      <dt><%= form.label :bio %></dt>
+      <dd><%= form.text_area :bio %></dd>
 
-    <p><%= form.label :profile_picture %></p>
-    <%= form.file_field :profile_picture %>
+      <dt><%= form.label :profile_picture %></dt>
+      <dd><%= form.file_field :profile_picture %></dd>
 
-    <br/>
-    <p><%= form.submit button_text %><p>
+      <br/>
+      <p><%= form.submit button_text, class: "btn btn-dark" %><p>
+    </dl>
   </div>
 <% end %>
 

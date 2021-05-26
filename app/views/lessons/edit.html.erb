@@ -4,7 +4,5 @@
                    botton_text: 'Salvar aula' %>
 
 <div>
-  <ul>
-    <li><%= link_to 'Cancelar', course_path(@course) %></li>
-  </ul>
+  <%= link_to 'Cancelar', course_path(@course), class: "btn btn-dark" %>
 </div>

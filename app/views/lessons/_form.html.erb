@@ -1,15 +1,17 @@
 <%= form_with model: [course, lesson] do |form| %>
   <div>
-    <p><%= form.label :name %></p>
-    <%= form.text_field :name %>
+    <dl>
+      <dt><%= form.label :name %></dt>
+      <dd><%= form.text_field :name %></dd>
 
-    <p><%= form.label :duration %></p>
-    <%= form.number_field :duration, step: 1, min: 1 %>
+      <dt><%= form.label :duration %></dt>
+      <dd><%= form.number_field :duration, step: 1, min: 1 %></dd>
 
-    <p><%= form.label :content %></p>
-    <%= form.text_area :content %>
+      <dt><%= form.label :content %></dt>
+      <dd><%= form.text_area :content %></dd>
 
-    <p><%= form.submit botton_text %></p>
+      <p><%= form.submit botton_text, class: "btn btn-dark" %></p>
+    </dl>
   </div>
 <% end %>
 
