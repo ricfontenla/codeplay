@@ -11,7 +11,11 @@
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    
+  </head>
+
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href= <%= root_path %>>Codeplay</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,22 +26,44 @@
             <a class="nav-link active" href=<%= root_path %>>Home</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href=<%= courses_path %>>Cursos</a>
+            <a class="nav-link" href=<%= instructors_path %>>Professores</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href=<%= instructors_path %>>Professores</a>
-          </li>          
+            <a class="nav-link" href=<%= courses_path %>>Cursos</a>
+          </li>
+          <% if user_signed_in? %>
+            <li class="nav-item active">
+            <a class="nav-link" href=<%= destroy_user_session_path %> data-method = delete>Sair</a>
+            </li>
+          <% else %>
+            <li class="nav-item active">
+              <a class="nav-link" href=<%= new_user_registration_path %>>Cadastre-se</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href=<%= new_user_session_path %>>Entrar</a>
+            </li>
+          <% end %>
         </ul>
       </div>
     </nav>
-  </head>
-
-  <body>
-    <%= yield %>
-    <%if notice %>
-      <div>
-        <%= notice %>
-      </div>
+    
+    
+    <% if user_signed_in? %>
+      <em>Olá, <%= current_user.email %><em>
+    <% else %>
+      <em>Olá, visitante<em>
     <% end %>
+
+    <div class= "container">
+      <br/>
+      <div class="jumbotron">
+        <%= yield %>
+      </div>
+      <%if notice %>
+       <div>
+          <%= notice %>
+        </div>
+      <% end %>
+    </div>
   </body>
 </html>

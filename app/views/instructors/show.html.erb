@@ -1,18 +1,20 @@
 <h1><%= @instructor.name %></h1>
+<hr class="my-4">
 
 <dl>
   <% if @instructor.profile_picture.attached? %>
-    <dt><b>Foto de perfil</b></dt>
+    <dt>Foto de perfil</dt>
     <dd><%= image_tag @instructor.profile_picture %></dd>
   <% end %>
 
-  <dt><b>Descrição:</b></dt>
+  <dt>Descrição:</dt>
   <dd><%= @instructor.bio %></dd>
 
-  <dt><b>E-mail:</b></dt>
+  <dt>E-mail:</dt>
   <dd><%= @instructor.email %></dd>
 </dl>
 
+<hr class="my-4">
 <div>
   <%= link_to 'Editar', edit_instructor_path, class: "btn btn-dark" %>
   <%= link_to 'Deletar', instructor_path(@instructor), method: :delete, 

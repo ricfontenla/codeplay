@@ -1,13 +1,16 @@
 <h1><%= t '.title' %></h1>
+<hr class="my-4">
 
 <% if @courses.empty? %>
   <p><%= t '.empty' %></p>
-<% end %>
+  <hr class="my-4">
+<% else %>
 
-<% @courses.each do |course| %>
-  <h2><%= link_to course.name, course %></h2>
-  <p><%= course.description %></p>
-  <p><%= number_to_currency course.price %></p>
+  <% @courses.each do |course| %>
+    <h2><%= link_to course.name, course %></h2>
+    <p><%= course.description %></p>
+    <p><%= number_to_currency course.price %></p>
+  <% end %>
 <% end %>
 
 <div>

@@ -1,11 +1,14 @@
-<div>
-  <h1><%= @lesson.name %></h1>
+<h1><%= @lesson.name %></h1>
+<hr class="my-4">
+<dl>
+  <dt>Duração:</dt>
+  <dd><%= t('lessons.plurals.duration', count: @lesson.duration) %></dd>
 
-  <p><%= t('lessons.plurals.duration', count: @lesson.duration) %></p>
+  <dt>Conteudo:</dt>
+  <dd><%= @lesson.content %></dd>
+</dl>
 
-  <p><%= @lesson.content %></p>
-</div>
-
+<hr class="my-4">
 <div>
   <%= link_to 'Editar aula', edit_course_lesson_path(@lesson), 
                class: "btn btn-dark" %>

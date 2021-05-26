@@ -1,8 +1,10 @@
 <h1><%= t '.title' %></h1>
+<hr class="my-4">
 
 <%= render 'form', course: @course, instructors: @instructors, 
                    button_text: 'Salvar curso' %>
 
+<hr class="my-4">
 <div>
     <%= link_to 'Cancelar', course_path(@course), class: "btn btn-dark" %>
 </div>

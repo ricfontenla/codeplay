@@ -1,8 +1,10 @@
 <h1><%= t '.title' %></h1>
+<hr class="my-4">
 
 <%= render 'form', instructor: @instructor, 
                    button_text: 'Cadastrar Professor' %>
 
+<hr class="my-4">
 <div>
   <%= link_to 'Cancelar', instructors_path, class: "btn btn-dark" %>
 </div>
