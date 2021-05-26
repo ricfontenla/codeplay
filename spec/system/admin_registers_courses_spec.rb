@@ -33,7 +33,7 @@ describe 'Admin registers courses' do
     click_on 'Criar curso'
 
     expect(page).to have_content('Novo Curso')
-    expect(page).to have_content('não pode ficar em branco', count: 3)
+    expect(page).to have_content('não pode ficar em branco', count: 4)
     expect(page).to have_link('Cancelar', href: courses_path)
   end
 

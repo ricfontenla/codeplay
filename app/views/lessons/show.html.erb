@@ -10,7 +10,7 @@
   <ul>
     <li><%= link_to 'Editar aula', edit_course_lesson_path(@lesson) %></li>
     <li>
-      <%= link_to 'Deletar', course_lesson_path(@lesson), 
+      <%= link_to 'Deletar', course_lesson_path(@course, @lesson), 
                   method: :delete %>
     </li>
     <li><%= link_to 'Voltar', course_path(@course) %></li>
