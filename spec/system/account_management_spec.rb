@@ -71,13 +71,8 @@ describe 'Account Management' do
     it 'sucessfully' do
       user = User.create!(email: 'jane_doe@codeplay.com', password: '123456')
 
+      login_as user, scope: :user
       visit root_path
-      click_on 'Entrar'
-      fill_in 'Email', with: 'jane_doe@codeplay.com'
-      fill_in 'Senha', with: '123456'
-      within 'form' do
-        click_on 'Entrar'
-      end
       click_on 'Sair'
 
       expect(page).to have_content('Saiu com sucesso')
