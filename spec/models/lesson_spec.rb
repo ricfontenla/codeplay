@@ -1,11 +1,6 @@
+require 'rails_helper'
+
 describe Lesson do
-  context 'Validation' do
-    it 'and name cannot be blank' do
-      lesson = Lesson.new
-
-      lesson.valid?
-
-      expect(lesson.errors[:name]).to include('não pode ficar em branco')
-    end
-  end
+  it { should belong_to(:course) }
+  it { should validate_numericality_of(:duration).only_integer.is_greater_than(0) }
 end
