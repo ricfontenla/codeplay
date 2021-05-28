@@ -29,3 +29,8 @@ pt-BR:
       new:
         forgot: 'Esqueceu sua senha?'
         sendme: 'Enviar instruções para trocar a senha'
+      edit:
+        title: 'Alterar Senha'
+        new_password: 'Nova senha'
+        new_password_confirmation: 'Confirmar nova senha'
+        change_my_password: 'Alterar minha senha'

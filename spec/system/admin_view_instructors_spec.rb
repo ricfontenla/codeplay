@@ -24,7 +24,6 @@ describe 'admin view instructors' do
     expect(page).to have_content('Dev e instrutor na Code Play')
     expect(page).to have_content('Sicrano Sicrano')
     expect(page).to have_content('Dev e fundador na Code Play')
-    expect(page).to have_link('Voltar', href: root_path)
   end
 
   it 'and view details' do
@@ -50,6 +49,5 @@ describe 'admin view instructors' do
 
     expect(page).to have_content('Professores Cadastrados')
     expect(page).to have_content('Nenhum professor cadastrado')
-    expect(page).to have_link('Voltar', href: root_path)
   end
 end

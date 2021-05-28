@@ -14,7 +14,9 @@ describe 'Account Management' do
       expect(current_path).to eq(root_path)
       expect(page).to have_content('jane_doe@codeplay.com')
       expect(page).to_not have_link('Cadastre-se')
+      expect(page).to_not have_link('Entrar')
       expect(page).to have_link('Sair')
+      expect(page).to have_link('Meu Perfil')
     end
 
     it 'and attributes cannot be blank' do
@@ -64,6 +66,7 @@ describe 'Account Management' do
       expect(page).to_not have_link('Registrar me')
       expect(page).to_not have_link('Entrar')
       expect(page).to have_link('Sair')
+      expect(page).to have_link('Meu Perfil')
     end
   end
 
@@ -81,6 +84,34 @@ describe 'Account Management' do
       expect(page).to have_link('Cadastre-se')
       expect(page).to have_link('Entrar')
       expect(page).to_not have_link('Sair')
+      expect(page).to_not have_link('Meu Perfil')
     end
+  end
+
+  context 'user forgot password' do
+    it 'and try to recover' do
+      User.create!(email: 'jane_doe@codeplay.com', password: '123456')
+  
+      visit new_user_session_path
+      click_on 'Esqueceu sua senha?'
+      fill_in 'Email', with: 'jane_doe@codeplay.com'
+      click_on 'Enviar instruções para trocar a senha'
+  
+      expect(current_path).to eq(new_user_session_path)
+      expect(page).to have_content('Dentro de minutos, você receberá um e-mail com instruções para a troca da sua senha')
+    end
+    
+    it 'and reset password' do
+      user = User.create!(email: 'jane_doe@codeplay.com', password: '123456')
+      token = user.send_reset_password_instructions
+
+      visit edit_user_password_path(reset_password_token: token)
+      
+      fill_in 'Nova senha', with: '987654'
+      fill_in 'Confirmar nova senha', with: '987654'
+      click_on 'Alterar minha senha'
+      expect(page).to have_content('Sua senha foi alterada com sucesso. Você está logado.')
+      expect(current_path).to eq (root_path)
+    end  
   end
 end
