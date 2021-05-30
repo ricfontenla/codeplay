@@ -18,9 +18,9 @@ describe 'User buy a corse' do
     visit root_path
     click_on 'Cursos'
     click_on course.name
-    click_on 'Comprar curso'
+    click_on 'Comprar'
 
-    expect(page).to have_content('Curso comprado com sucesso!')
+    expect(page).to have_content('Curso comprado com sucesso')
     expect(page).to_not have_link('Comprar curso')
   end
 end

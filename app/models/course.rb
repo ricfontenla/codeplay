@@ -4,4 +4,7 @@ class Course < ApplicationRecord
 
   validates :name, :code, :price, :enrollment_deadline, presence: true
   validates :code, uniqueness: true
+
+  has_many :enrollments
+  has_many :users, through: :enrollments
 end
