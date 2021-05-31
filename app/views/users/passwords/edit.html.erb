@@ -1,0 +1,28 @@
+<h2><%= t('.title') %></h2>
+<hr class="my-4">
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= f.hidden_field :reset_password_token %>
+
+  <div class="field">
+    <%= f.label :password, t('.new_password') %><br />
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+    <% end %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, t('.new_password_confirmation') %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit t('.change_my_password'), class: "btn btn-dark" %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>
+
+<br/>
+<%= render "users/shared/error_messages", resource: resource %>

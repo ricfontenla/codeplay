@@ -2,6 +2,6 @@
 
 <% @enrollments.each do |enrollment| %>
   <%= enrollment.course.name %>
-  <p>Comprado em: <%= enrollment.created_at %></p>
+  <p>Comprado em: <%=I18n.localize enrollment.created_at %></p>
   <p>Valor da compra: <%= number_to_currency enrollment.price %></p>
 <% end %>

@@ -1,0 +1,21 @@
+<h2><%= t('.forgot')%></h2>
+<hr class="my-4">
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <div class="field">
+    <dl>
+      <dt><%= f.label :email %></dt>
+      <dd><%= f.email_field :email, autofocus: true, autocomplete: "email" %></dd>
+    </dl>
+  </div>
+
+  <div class="actions">
+    <%= f.submit t('.send_me'), class: "btn btn-dark" %>
+  </div>
+<% end %>
+<div>
+  <%= render "users/shared/links" %>
+</div>
+
+<br/>
+<%= render "users/shared/error_messages", resource: resource %>

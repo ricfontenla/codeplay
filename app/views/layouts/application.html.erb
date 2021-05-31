@@ -25,12 +25,17 @@
           <li class="nav-item">
             <a class="nav-link active" href=<%= root_path %>>Home</a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href=<%= instructors_path %>>Professores</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href=<%= courses_path %>>Cursos</a>
-          </li>
+          <% if admin_signed_in? %>
+            <li class="nav-item active">
+              <a class="nav-link" href=<%= instructors_path %>>Professores</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href=<%= courses_path %>>Cursos</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href=<%= destroy_admin_session_path %> data-method = delete>Sair</a>
+            </li>
+          <% end %>
           <% if user_signed_in? %>
             <li class="nav-item active">
               <a class="nav-link" href=<%= my_enrollments_courses_path %>>Meu Perfil</a>
@@ -38,12 +43,16 @@
             <li class="nav-item active">
               <a class="nav-link" href=<%= destroy_user_session_path %> data-method = delete>Sair</a>
             </li>
-          <% else %>
+          <% end %>
+          <% unless user_signed_in? || admin_signed_in? %>
             <li class="nav-item active">
               <a class="nav-link" href=<%= new_user_registration_path %>>Cadastre-se</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href=<%= new_user_session_path %>>Entrar</a>
+              <a class="nav-link" href=<%= new_user_session_path %>>Login de Usuário</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href=<%= new_admin_session_path %>>Login de Administrador</a>
             </li>
           <% end %>
         </ul>
@@ -53,6 +62,8 @@
     
     <% if user_signed_in? %>
       <em>Olá, <%= current_user.email %><em>
+    <% elsif admin_signed_in? %>
+      <em>Olá, <%= current_admin.email %><em>
     <% else %>
       <em>Olá, visitante<em>
     <% end %>
@@ -65,6 +76,11 @@
       <%if notice %>
        <div>
           <%= notice %>
+        </div>
+      <% end %>
+      <%if alert %>
+       <div>
+          <%= alert %>
         </div>
       <% end %>
     </div>

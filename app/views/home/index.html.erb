@@ -1,9 +1,13 @@
-<h3 class="display-5"><%= t '.title3' %></h3>
+<h2 class="display-5"><%= t '.title3' %></h2>
 <hr class="my-4">
 
-<h3>Cursos Disponíveis</h3>
-<% @courses.each do |course| %>
-  <%= link_to course.name, course %>
-  <%= course.description %>
-  <%= number_to_currency course.price %>
-<% end %>
+<h3>Cursos Disponíveis:</h3>
+<div>
+  <% @courses.each do |course| %>
+    <dl>
+      <dt><%= link_to course.name, course %></dt>
+      <dd><%= course.description %></dd>
+      <dd><%= number_to_currency course.price %></dd>
+    </dl>
+  <% end %>
+</div>

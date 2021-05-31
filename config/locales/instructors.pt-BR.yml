@@ -21,4 +21,4 @@ pt-BR:
         name: 'Nome'
         email: 'E-mail'
         bio: 'Descrição'
-        profile_picture: 'Foto de perfil'
+        profile_picture: 'Foto do perfil'

@@ -1,0 +1,36 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      user:
+        one: 'Usuário(a)'
+        other: 'Usuários(as)'
+    attributes:
+      user:
+        password: 'Senha'
+        password_confirmation: 'Confirmar senha'
+  users:
+    registrations:
+      new:
+        title: 'Cadastro de usuário'
+        password: 'Senha'
+        submit: 'Criar Conta'
+    shared:
+      links:
+        login: 'Entrar'
+        forgot: 'Esqueceu sua senha?'
+        signup: 'Cadastrar'
+    sessions:
+      new:
+        title: 'Login de usuário'
+        login: 'Entrar'
+        remember_me: 'Lembrar-se de mim'
+    passwords:
+      new:
+        forgot: 'Esqueceu sua senha?'
+        send_me: 'Enviar instruções para trocar a senha'
+      edit:
+        title: 'Alterar Senha'
+        new_password: 'Nova senha'
+        new_password_confirmation: 'Confirmar nova senha'
+        change_my_password: 'Alterar minha senha'
