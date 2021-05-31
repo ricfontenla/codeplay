@@ -42,6 +42,7 @@ describe 'Admin registers lessons' do
                             enrollment_deadline: Date.current, 
                             instructor: instructor)
 
+    login_as admin,scope: :admin
     visit course_path(course)
     click_on 'Cadastrar uma aula'
     click_on 'Cadastrar aula'

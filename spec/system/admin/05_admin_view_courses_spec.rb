@@ -54,7 +54,7 @@ describe 'Admin view courses' do
 
     login_as admin, scope: :admin
     visit courses_path
-    click_on course.name
+    click_on 'Ruby on Rails'
 
     expect(page).to have_content('Ruby on Rails')
     expect(page).to have_content('Um curso de Ruby on Rails')
@@ -63,6 +63,8 @@ describe 'Admin view courses' do
     expect(page).to have_content(2.months.from_now.strftime("%d/%m/%Y"))
     expect(page).to have_link('Fulano Fulano', href: instructor_path(instructor))
     expect(page).to have_link('Voltar', href: courses_path)
+    expect(page).not_to have_link('Comprar', href: enroll_course_path(course))
+
   end
 
   it 'and no course is available' do

@@ -22,7 +22,7 @@ describe 'Student view courses on homepage' do
 
     visit root_path
 
-    expect(page).to have_content('Ruby')
+    expect(page).to have_link('Ruby', href: course_path(available_course))
     expect(page).to have_content('Um curso de Ruby')
     expect(page).to have_content('R$ 10,00')
     expect(page).not_to have_content('HTML')
@@ -46,8 +46,10 @@ describe 'Student view courses on homepage' do
     login_as user, scope: :user
     visit root_path
     click_on 'Ruby'
-
     expect(page).to have_link('Comprar')
+    expect(page).not_to have_link('Editar curso', href: edit_course_path(available_course))
+    expect(page).not_to have_link('Deletar curso', href: course_path(available_course))
+    expect(page).not_to have_link('Cadastrar uma aula', href: new_course_lesson_path(available_course))
   end
 
   xit 'and does not view enrollment if deadline is over' do

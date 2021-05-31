@@ -16,20 +16,32 @@
 
 <hr class="my-4">
 <div>
-  <%= link_to 'Editar curso', edit_course_path(@course), class: "btn btn-dark" %>
-  <%= link_to 'Deletar curso', course_path(@course), method: :delete, 
-                               data: { confirm: "Tem certeza?" }, 
-                               class: "btn btn-dark" %>
-  <%= link_to 'Cadastrar uma aula', new_course_lesson_path(@course), 
-                                    class: "btn btn-dark" %>
-  <%= link_to 'Voltar', courses_path, class: "btn btn-dark" %>
+  <% if admin_signed_in? %>
+    <%= link_to 'Editar curso', edit_course_path(@course), class: "btn btn-dark" %>
+    <%= link_to 'Deletar curso', course_path(@course), method: :delete, 
+                                data: { confirm: "Tem certeza?" }, 
+                                class: "btn btn-dark" %>
+    <%= link_to 'Cadastrar uma aula', new_course_lesson_path(@course), 
+                                      class: "btn btn-dark" %>
+  <% end %>
+  <% if admin_signed_in? %>
+    <%= link_to 'Voltar', courses_path, class: "btn btn-dark" %>
+  <% else %>
+    <%= link_to 'Voltar', root_path, class: "btn btn-dark" %>
+  <% end %>
 
   <% if user_signed_in? %>
     <% if current_user.courses.exclude?(@course) %>
       <%= link_to 'Comprar', enroll_course_path, method: :post, class: "btn btn-dark" %>
+    <% else %>
+      <br/><br/>
+      <p>Você já possui este curso</p>
     <% end %>
   <% else %>
-    <p>Faça <%= link_to 'login', new_user_session_path %> para comprar esse curso</p>  
+    <% unless admin_signed_in? %>
+      <br/><br/>
+      <p>Faça <%= link_to 'login', new_user_session_path %> para comprar esse curso</p>  
+    <% end %>
   <% end %>
 
 </div>
