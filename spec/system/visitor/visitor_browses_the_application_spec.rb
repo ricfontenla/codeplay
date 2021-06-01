@@ -22,7 +22,7 @@ describe 'Visitor browses the application' do
     expect(page).to have_content('R$ 10,00')
   end
 
-  it 'view and details of a course' do
+  it 'and view details of a course' do
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')
@@ -48,7 +48,7 @@ describe 'Visitor browses the application' do
   xit 'and view lessons' do
   end
 
-  xit 'and view details of lesson' do
+  xit 'and cannot view details of lesson' do
   end
 
   xit 'and view details of a instructor' do

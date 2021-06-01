@@ -17,22 +17,27 @@
 <hr class="my-4">
 <div>
   <% if admin_signed_in? %>
-    <%= link_to 'Editar curso', edit_course_path(@course), class: "btn btn-dark" %>
-    <%= link_to 'Deletar curso', course_path(@course), method: :delete, 
+    <%= link_to 'Editar curso', edit_admin_course_path(@course), class: "btn btn-dark" %>
+    <%= link_to 'Deletar curso', admin_course_path(@course), method: :delete, 
                                 data: { confirm: "Tem certeza?" }, 
                                 class: "btn btn-dark" %>
     <%= link_to 'Cadastrar uma aula', new_course_lesson_path(@course), 
                                       class: "btn btn-dark" %>
   <% end %>
   <% if admin_signed_in? %>
-    <%= link_to 'Voltar', courses_path, class: "btn btn-dark" %>
+    <%= link_to 'Voltar', admin_courses_path, class: "btn btn-dark" %>
   <% else %>
     <%= link_to 'Voltar', root_path, class: "btn btn-dark" %>
   <% end %>
 
   <% if user_signed_in? %>
     <% if current_user.courses.exclude?(@course) %>
-      <%= link_to 'Comprar', enroll_course_path, method: :post, class: "btn btn-dark" %>
+      <% if @course.enrollment_deadline >= Date.current %>
+        <%= link_to 'Comprar', enroll_course_path, method: :post, class: "btn btn-dark" %>
+      <% else %>
+        <br/><br/>
+        <p>O prazo para adquirir este curso terminou</p>
+      <% end %>
     <% else %>
       <br/><br/>
       <p>Você já possui este curso</p>
@@ -51,7 +56,13 @@
 <% if @course.lessons.any? %>
   <% @course.lessons.each do |lesson| %>
     <dl>
-      <dt><b><%= link_to lesson.name, course_lesson_path(@course, lesson) %></b></dt>
+      <% if user_signed_in? && current_user.courses.include?(@course) %>
+        <dt><b><%= link_to lesson.name, course_lesson_path(@course, lesson) %></b></dt>
+      <% elsif admin_signed_in? %>
+        <dt><b><%= link_to lesson.name, course_lesson_path(@course, lesson) %></b></dt>
+      <% else %>
+        <dt><b><%= lesson.name %></b></dt>
+      <% end %>
       <dd><%= t('lessons.plurals.duration', count: lesson.duration) %></dd>
     </dl>
   <% end %>

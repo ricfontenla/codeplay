@@ -25,7 +25,7 @@ describe 'Admin deletes course' do
     
     expect { click_on 'Deletar curso'}.to change { Course.count }.by(-1)
     expect(Lesson.last).to eq(nil)
-    expect(current_path).to eq(courses_path)
+    expect(current_path).to eq(admin_courses_path)
     expect(page).to have_content('Curso apagado com sucesso')
   end
 end

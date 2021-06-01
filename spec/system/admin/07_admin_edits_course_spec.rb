@@ -30,7 +30,7 @@ describe 'Admin edits course' do
     select 'Sicrano Sicrano', from: 'Professor'
     click_on 'Salvar curso'
 
-    expect(current_path).to eq(course_path(course))
+    expect(current_path).to eq(admin_course_path(course))
     expect(page).to have_content('Ruby on Rails')
     expect(page).to have_content('Um curso de Ruby on Rails')
     expect(page).to have_content('RUBYONRAILS')
@@ -54,7 +54,7 @@ describe 'Admin edits course' do
                             instructor: instructor)
 
     login_as admin, scope: :admin
-    visit course_path(course)
+    visit admin_course_path(course)
     click_on 'Editar'
     fill_in 'Nome', with: ''
     fill_in 'Código', with: ''
@@ -86,7 +86,7 @@ describe 'Admin edits course' do
                    instructor: instructor)
 
     login_as admin, scope: :admin
-    visit course_path(course)
+    visit admin_course_path(course)
     click_on 'Editar'
     fill_in 'Código', with: 'RUBYONRAILS'
     click_on 'Salvar curso'

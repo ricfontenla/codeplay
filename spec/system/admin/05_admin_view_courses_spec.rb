@@ -53,7 +53,7 @@ describe 'Admin view courses' do
                             instructor: instructor)
 
     login_as admin, scope: :admin
-    visit courses_path
+    visit admin_courses_path
     click_on 'Ruby on Rails'
 
     expect(page).to have_content('Ruby on Rails')
@@ -62,7 +62,7 @@ describe 'Admin view courses' do
     expect(page).to have_content('R$ 20,00')
     expect(page).to have_content(2.months.from_now.strftime("%d/%m/%Y"))
     expect(page).to have_link('Fulano Fulano', href: instructor_path(instructor))
-    expect(page).to have_link('Voltar', href: courses_path)
+    expect(page).to have_link('Voltar', href: admin_courses_path)
     expect(page).not_to have_link('Comprar', href: enroll_course_path(course))
 
   end
@@ -72,10 +72,9 @@ describe 'Admin view courses' do
                           password: '987654')
 
     login_as admin, scope: :admin
-    visit courses_path
+    visit admin_courses_path
 
     expect(page).to have_content('Cursos Cadastrados')
     expect(page).to have_content('Nenhum curso disponível')
-    expect(page).to have_link(href: root_path)
   end
 end

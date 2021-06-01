@@ -1,20 +1,21 @@
 ---
 pt-BR:
-  courses:
-    index:
-      title: 'Cursos Cadastrados'
-      empty: 'Nenhum curso disponível'
-    show:
-      title2: 'Aulas neste curso'
-      lessons_empty: 'Não há aulas cadastradas neste curso'
-    new:
-      title: 'Novo Curso'
-    edit:
-      title: 'Editar Curso'
-    update:
-      success: 'Curso editado com sucesso'
-    destroy:
-      success: 'Curso apagado com sucesso'
+  admin:
+    courses:
+      index:
+        title: 'Cursos Cadastrados'
+        empty: 'Nenhum curso disponível'
+      show:
+        title2: 'Aulas neste curso'
+        lessons_empty: 'Não há aulas cadastradas neste curso'
+      new:
+        title: 'Novo Curso'
+      edit:
+        title: 'Editar Curso'
+      update:
+        success: 'Curso editado com sucesso'
+      destroy:
+        success: 'Curso apagado com sucesso'
   activerecord:
     models:
       course: 'Curso'

@@ -7,12 +7,12 @@
 <% else %>
 
   <% @courses.each do |course| %>
-    <h2><%= link_to course.name, course %></h2>
+    <h2><%= link_to course.name, [:admin, course] %></h2>
     <p><%= course.description %></p>
     <p><%= number_to_currency course.price %></p>
   <% end %>
 <% end %>
 
 <div>
-  <%= link_to 'Cadastrar um Curso', new_course_path, class: "btn btn-dark" %>
+  <%= link_to 'Cadastrar um Curso', new_admin_course_path, class: "btn btn-dark" %>
 </div>

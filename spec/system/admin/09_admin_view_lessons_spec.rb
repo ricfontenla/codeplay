@@ -55,6 +55,7 @@ describe 'Admin view lessons' do
                    duration: 50, 
                   course: course)
 
+    login_as admin, scope: :admin
     visit course_path(course)
     click_on 'Lógica de Programação'
 

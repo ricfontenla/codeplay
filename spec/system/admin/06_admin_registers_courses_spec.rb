@@ -20,7 +20,7 @@ describe 'Admin registers courses' do
     select 'Fulano Fulano', from: 'Professor'
     click_on 'Criar curso'
 
-    expect(current_path).to eq(course_path(Course.last))
+    expect(current_path).to eq(admin_course_path(Course.last))
     expect(page).to have_content('Ruby on Rails')
     expect(page).to have_content('Um curso de Ruby on Rails')
     expect(page).to have_content('RUBYONRAILS')
@@ -33,12 +33,13 @@ describe 'Admin registers courses' do
     admin = Admin.create!(email: 'ademir@codeplay.com', 
                           password: '987654')
 
-    visit new_course_path
+    login_as admin, scope: :admin
+    visit new_admin_course_path
     click_on 'Criar curso'
 
     expect(page).to have_content('Novo Curso')
     expect(page).to have_content('não pode ficar em branco', count: 4)
-    expect(page).to have_link('Cancelar', href: courses_path)
+    expect(page).to have_link('Cancelar', href: admin_courses_path)
   end
 
   it 'and code must be unique' do
@@ -55,12 +56,12 @@ describe 'Admin registers courses' do
                    instructor: instructor)
 
     login_as admin, scope: :admin
-    visit new_course_path
+    visit new_admin_course_path
     fill_in 'Código', with: 'RUBYBASIC'
     click_on 'Criar curso'
 
     expect(page).to have_content('Novo Curso')
     expect(page).to have_content('já está em uso')
-    expect(page).to have_link('Cancelar', href: courses_path)
+    expect(page).to have_link('Cancelar', href: admin_courses_path)
   end
 end
