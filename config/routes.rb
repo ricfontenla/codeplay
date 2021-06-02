@@ -18,5 +18,7 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :courses, only: [:show]
+
   resources :instructors
 end

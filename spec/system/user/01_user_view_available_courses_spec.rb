@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Student view courses on homepage' do
+describe 'user view courses on homepage' do
   it 'courses with enrollment still available' do
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
@@ -20,6 +20,7 @@ describe 'Student view courses on homepage' do
     user = User.create!(email: 'jane_doe@codeplay.com', 
                         password: '123456')
 
+    login_as user, scope: :user
     visit root_path
 
     expect(page).to have_link('Ruby', href: user_course_path(available_course))
@@ -48,13 +49,10 @@ describe 'Student view courses on homepage' do
     click_on 'Ruby'
 
     expect(page).to have_link('Comprar')
-    expect(page).not_to have_link('Editar curso', href: edit_course_path(course))
-    expect(page).not_to have_link('Deletar curso', href: course_path(course))
-    expect(page).not_to have_link('Cadastrar uma aula', href: new_course_lesson_path(course))
+    expect(current_path).to eq(user_course_path(course))
   end
 
   it 'and does not view enrollment if deadline is over' do
-    # curso com data limite ultrapassada mas com usuario logado não deve exibir o link
     user = User.create!(email: 'jane_doe@codeplay.com', 
                         password: '123456')
     instructor = Instructor.create!(name: 'Fulano Fulano', 
@@ -68,7 +66,7 @@ describe 'Student view courses on homepage' do
                                       instructor: instructor)
     
     login_as user, scope: :user
-    visit course_path(course) 
+    visit user_course_path(course) 
 
     expect(page).not_to have_link('Comprar')
     expect(page).to have_content('O prazo para adquirir este curso terminou')
@@ -118,7 +116,7 @@ describe 'Student view courses on homepage' do
     click_on 'Comprar'
 
     expect(page).to have_content('Curso comprado com sucesso') 
-    expect(current_path).to eq(my_enrollments_courses_path)
+    expect(current_path).to eq(my_enrollments_user_courses_path)
     expect(page).to have_content('Ruby')
     expect(page).to have_content('R$ 10,00')
     expect(page).not_to have_content('Elixir')

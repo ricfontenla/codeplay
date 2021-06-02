@@ -7,8 +7,10 @@
     <dl>
       <% if admin_signed_in? %>
         <dt><%= link_to course.name, admin_course_path(course) %></dt>
-      <% else %>
+      <% elsif user_signed_in? %>
         <dt><%= link_to course.name, user_course_path(course) %></dt>
+      <% else %>
+        <dt><%= link_to course.name, course_path(course) %></dt>
       <% end %>
       <dd><%= course.description %></dd>
       <dd><%= number_to_currency course.price %></dd>

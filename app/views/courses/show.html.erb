@@ -17,17 +17,7 @@
 <hr class="my-4">
 <div>
   
-  <% if current_user.courses.exclude?(@course) %>
-    <% if @course.enrollment_deadline >= Date.current %>
-      <%= link_to 'Comprar', enroll_user_course_path, method: :post, class: "btn btn-dark" %>
-    <% else %>
-      <br/><br/>
-      <p>O prazo para adquirir este curso terminou</p>
-    <% end %>
-  <% else %>
-    <br/><br/>
-    <p>Você já possui este curso</p>
-  <% end %>
+  <p> Faça <%= link_to 'login', new_user_session_path %> para comprar esse curso</p>
 
   <%= link_to 'Voltar', root_path, class: "btn btn-dark" %>
 
@@ -38,11 +28,7 @@
 <% if @course.lessons.any? %>
   <% @course.lessons.each do |lesson| %>
     <dl>
-      <% if current_user.courses.include?(@course) %>
-        <dt><b><%= link_to lesson.name, user_course_lesson_path(@course, lesson) %></b></dt>
-      <% else %>
-        <dt><b><%= lesson.name %></b></dt>
-      <% end %>
+      <dt><b><%= lesson.name %></b></dt>
       <dd><%= t('lessons.plurals.duration', count: lesson.duration) %></dd>
     </dl>
   <% end %>

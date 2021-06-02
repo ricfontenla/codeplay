@@ -51,21 +51,21 @@ describe 'User manages account' do
 
   context 'and sign in' do
     it 'sucessfully' do
-      Admin.create!(email: 'ademir@codeplay.com', 
-                    password: '987654')
+      User.create!(email: 'jane_doe@codeplay.com', 
+                   password: '123456')
 
       visit root_path
-      click_on 'Login de Administrador'
-      fill_in 'Email', with: 'ademir@codeplay.com'
-      fill_in 'Senha', with: '987654'
+      click_on 'Login de Usuário'
+      fill_in 'Email', with: 'jane_doe@codeplay.com'
+      fill_in 'Senha', with: '123456'
       click_on 'Entrar'
 
       expect(page).to have_content('Login efetuado com sucesso')
       expect(current_path).to eq(root_path)
-      expect(page).to have_content('ademir@codeplay.com')
-      expect(page).to have_link('Professores', href: instructors_path)
-      expect(page).to have_link('Cursos', href: courses_path)
-      expect(page).to have_link('Sair', href: destroy_admin_session_path)
+      expect(page).to have_content('jane_doe@codeplay.com')
+      expect(page).to have_link('Meu Perfil', href: my_enrollments_user_courses_path)
+      expect(page).to_not have_link('Professores')
+      expect(page).to_not have_link('Cursos')
       expect(page).to_not have_link('Login de Usuário')
       expect(page).to_not have_link('Login de Administrador')
       
