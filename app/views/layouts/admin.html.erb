@@ -15,7 +15,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href= <%= root_path %>>Codeplay</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -26,37 +26,37 @@
             <a class="nav-link active" href=<%= root_path %>>Home</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href=<%= new_user_registration_path %>>Cadastre-se</a>
+            <a class="nav-link" href=<%= instructors_path %>>Professores</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href=<%= new_user_session_path %>>Login de Usuário</a>
+            <a class="nav-link" href=<%= admin_courses_path %>>Cursos</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href=<%= new_admin_session_path %>>Login de Administrador</a>
+            <a class="nav-link" href=<%= destroy_admin_session_path %> data-method = delete>Sair</a>
           </li>
         </ul>
       </div>
     </nav>
     
-    
-    <em>Olá, visitante<em>
+    <em>Olá, <%= current_admin.email %><em>
 
-      <%if notice %>
-       <div>
-          <%= notice %>
-        </div>
-      <% end %>
-      <%if alert %>
-       <div>
-          <%= alert %>
-        </div>
-      <% end %>
-    
+    <%if notice %>
+      <div>
+        <%= notice %>
+      </div>
+    <% end %>
+    <%if alert %>
+      <div>
+        <%= alert %>
+      </div>
+    <% end %>
+
     <div class= "container">
       <br/>
       <div class="jumbotron">
         <%= yield %>
       </div>
     </div>
+    
   </body>
 </html>

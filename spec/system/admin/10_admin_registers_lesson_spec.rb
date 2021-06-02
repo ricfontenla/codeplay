@@ -24,8 +24,9 @@ describe 'Admin registers lessons' do
     fill_in 'Conteúdo', with: 'Revisão de lógica de programação em Ruby'
     click_on 'Cadastrar aula'
    
-    expect(current_path).to eq course_path(course)
+    expect(current_path).to eq admin_course_path(course)
     expect(page).to have_content('Lógica de Programação')
+    save_page
     expect(page).to have_content('50 minutos')
   end
 
@@ -43,12 +44,12 @@ describe 'Admin registers lessons' do
                             instructor: instructor)
 
     login_as admin,scope: :admin
-    visit course_path(course)
+    visit admin_course_path(course)
     click_on 'Cadastrar uma aula'
     click_on 'Cadastrar aula'
 
     expect(page).to have_content('Nova Aula')
     expect(page).to have_content('não pode ficar em branco')
-    expect(page).to have_link('Cancelar', href: course_path(course))
+    expect(page).to have_link('Cancelar', href: admin_course_path(course))
   end
 end

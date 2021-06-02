@@ -1,0 +1,18 @@
+<h1><%= t '.title' %></h1>
+<hr class="my-4">
+
+<% if @courses.empty? %>
+  <p><%= t '.empty' %></p>
+  <hr class="my-4">
+<% else %>
+
+  <% @courses.each do |course| %>
+    <h2><%= link_to course.name, [:admin, course] %></h2>
+    <p><%= course.description %></p>
+    <p><%= number_to_currency course.price %></p>
+  <% end %>
+<% end %>
+
+<div>
+  <%= link_to 'Cadastrar um Curso', new_admin_course_path, class: "btn btn-dark" %>
+</div>

@@ -63,7 +63,6 @@ describe 'Admin view courses' do
     expect(page).to have_content(2.months.from_now.strftime("%d/%m/%Y"))
     expect(page).to have_link('Fulano Fulano', href: instructor_path(instructor))
     expect(page).to have_link('Voltar', href: admin_courses_path)
-    expect(page).not_to have_link('Comprar', href: enroll_course_path(course))
 
   end
 

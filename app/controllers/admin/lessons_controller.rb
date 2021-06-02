@@ -1,4 +1,4 @@
-class LessonsController < ApplicationController
+class Admin::LessonsController < Admin::AdminController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
   before_action :get_course
   def new
@@ -8,7 +8,7 @@ class LessonsController < ApplicationController
   def create
     @lesson = @course.lessons.build(lesson_params)
     if @lesson.save
-      redirect_to course_path(@course)
+      redirect_to admin_course_path(@course)
     else
       render :new
     end
@@ -23,7 +23,7 @@ class LessonsController < ApplicationController
   def update
     if @lesson.update(lesson_params)
       flash[:notice] = t '.success'
-      redirect_to course_path(@course)
+      redirect_to admin_course_path(@course)
     else
       render :edit
     end
@@ -31,7 +31,7 @@ class LessonsController < ApplicationController
 
   def destroy
     @lesson.destroy
-    redirect_to @course
+    redirect_to [:admin, @course]
     flash[:notice] = 'Aula deletada com sucesso'
   end
 

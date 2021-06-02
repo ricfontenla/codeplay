@@ -1,0 +1,71 @@
+<h1><%= @course.name %></h1>
+<hr class="my-4">
+
+<dl>
+  <dt><%= Course.human_attribute_name(:description) %>:</dt>
+  <dd><%= @course.description %></dd>
+  <dt><%= Course.human_attribute_name(:code) %>:</dt>
+  <dd><%= @course.code %></dd>
+  <dt><%= Course.human_attribute_name(:price) %>:</dt>
+  <dd><%= number_to_currency @course.price %></dd>
+  <dt><%= Course.human_attribute_name(:enrollment_deadline) %>:</dt>
+  <dd><%= I18n.localize @course.enrollment_deadline %></dd>
+  <dt><%= Course.human_attribute_name(:instructor_id) %>:</dt>
+  <dd><%= link_to @course.instructor.name, instructor_path(@course.instructor) %></dt>
+</dl>
+
+<hr class="my-4">
+<div>
+  <% if admin_signed_in? %>
+    <%= link_to 'Editar curso', edit_admin_course_path(@course), class: "btn btn-dark" %>
+    <%= link_to 'Deletar curso', admin_course_path(@course), method: :delete, 
+                                data: { confirm: "Tem certeza?" }, 
+                                class: "btn btn-dark" %>
+    <%= link_to 'Cadastrar uma aula', new_course_lesson_path(@course), 
+                                      class: "btn btn-dark" %>
+  <% end %>
+  <% if admin_signed_in? %>
+    <%= link_to 'Voltar', admin_courses_path, class: "btn btn-dark" %>
+  <% else %>
+    <%= link_to 'Voltar', root_path, class: "btn btn-dark" %>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <% if current_user.courses.exclude?(@course) %>
+      <% if @course.enrollment_deadline >= Date.current %>
+        <%= link_to 'Comprar', enroll_course_path, method: :post, class: "btn btn-dark" %>
+      <% else %>
+        <br/><br/>
+        <p>O prazo para adquirir este curso terminou</p>
+      <% end %>
+    <% else %>
+      <br/><br/>
+      <p>Você já possui este curso</p>
+    <% end %>
+  <% else %>
+    <% unless admin_signed_in? %>
+      <br/><br/>
+      <p>Faça <%= link_to 'login', new_user_session_path %> para comprar esse curso</p>  
+    <% end %>
+  <% end %>
+
+</div>
+<hr class="my-4">
+
+<h2><%= t '.title2' %>:</h2>
+<% if @course.lessons.any? %>
+  <% @course.lessons.each do |lesson| %>
+    <dl>
+      <% if user_signed_in? && current_user.courses.include?(@course) %>
+        <dt><b><%= link_to lesson.name, course_lesson_path(@course, lesson) %></b></dt>
+      <% elsif admin_signed_in? %>
+        <dt><b><%= link_to lesson.name, course_lesson_path(@course, lesson) %></b></dt>
+      <% else %>
+        <dt><b><%= lesson.name %></b></dt>
+      <% end %>
+      <dd><%= t('lessons.plurals.duration', count: lesson.duration) %></dd>
+    </dl>
+  <% end %>
+<% else %>
+  <p><%= t '.lessons_empty' %></p>
+<% end %>

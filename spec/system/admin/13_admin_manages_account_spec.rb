@@ -16,7 +16,7 @@ describe 'Admin manages account' do
       expect(current_path).to eq(root_path)
       expect(page).to have_content('ademir@codeplay.com')
       expect(page).to have_link('Professores', href: instructors_path)
-      expect(page).to have_link('Cursos', href: courses_path)
+      expect(page).to have_link('Cursos', href: admin_courses_path)
       expect(page).to have_link('Sair', href: destroy_admin_session_path)
       expect(page).to_not have_link('Login de Usuário')
       expect(page).to_not have_link('Login de Administrador')

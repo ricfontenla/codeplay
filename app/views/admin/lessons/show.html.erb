@@ -1,0 +1,20 @@
+<h1><%= @lesson.name %></h1>
+<hr class="my-4">
+<dl>
+  <dt>Duração:</dt>
+  <dd><%= t('admin.lessons.plurals.duration', count: @lesson.duration) %></dd>
+
+  <dt>Conteudo:</dt>
+  <dd><%= @lesson.content %></dd>
+</dl>
+
+<hr class="my-4">
+<div>
+  <%= link_to 'Editar aula', edit_admin_course_lesson_path(@lesson), 
+               class: "btn btn-dark" %>
+  <%= link_to 'Deletar', admin_course_lesson_path(@course, @lesson), 
+                         method: :delete, 
+                         data: { confirm: 'Tem certeza?' }, 
+                         class: "btn btn-dark" %>
+  <%= link_to 'Voltar', admin_course_path(@course), class: "btn btn-dark" %>
+</div>

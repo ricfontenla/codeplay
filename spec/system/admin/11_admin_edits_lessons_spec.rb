@@ -30,7 +30,7 @@ describe 'admin edits lessons' do
     click_on 'Salvar aula'
 
     expect(page).to have_link('Tipos Primitivos', 
-                              href: course_lesson_path(course, lesson))
+                              href: admin_course_lesson_path(course, lesson))
     expect(page).to have_content('40 minutos')
     expect(page).to have_content('Aula atualizada com sucesso')
     expect(page).not_to have_content('Lógica de Programação')
@@ -56,7 +56,8 @@ describe 'admin edits lessons' do
                             duration: 50, 
                             course: course)
 
-    visit course_lesson_path(course, lesson)
+    login_as admin, scope: :admin
+    visit admin_course_lesson_path(course, lesson)
     click_on 'Editar aula'
     fill_in 'Nome', with: ''
     fill_in 'Duração', with: ''
@@ -64,6 +65,6 @@ describe 'admin edits lessons' do
 
     expect(page).to have_content('Editar Aula')
     expect(page).to have_content('não pode ficar em branco', count: 2)
-    expect(page).to have_link('Cancelar', href: course_path(course))
+    expect(page).to have_link('Cancelar', href: admin_course_path(course))
   end
 end

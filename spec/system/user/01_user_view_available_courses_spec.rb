@@ -22,7 +22,7 @@ describe 'Student view courses on homepage' do
 
     visit root_path
 
-    expect(page).to have_link('Ruby', href: course_path(available_course))
+    expect(page).to have_link('Ruby', href: user_course_path(available_course))
     expect(page).to have_content('Um curso de Ruby')
     expect(page).to have_content('R$ 10,00')
     expect(page).not_to have_content('HTML')

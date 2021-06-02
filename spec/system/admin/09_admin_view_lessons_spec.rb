@@ -56,14 +56,14 @@ describe 'Admin view lessons' do
                   course: course)
 
     login_as admin, scope: :admin
-    visit course_path(course)
+    visit admin_course_path(course)
     click_on 'Lógica de Programação'
 
-    expect(current_path).to eq course_lesson_path(course, lesson)
+    expect(current_path).to eq admin_course_lesson_path(course, lesson)
     expect(page).to have_content('Lógica de Programação')
     expect(page).to have_content('Conceitos de lógica de programação')
     expect(page).to have_content('40 minutos')
-    expect(page).to have_link('Voltar', href: course_path(course))
+    expect(page).to have_link('Voltar', href: admin_course_path(course))
   end
 
   it 'and no lessons available' do
@@ -80,7 +80,7 @@ describe 'Admin view lessons' do
                             instructor: instructor)
 
     login_as admin, scope: :admin    
-    visit course_path(course)
+    visit admin_course_path(course)
     
     expect(page).to have_content('Aulas neste curso:')
     expect(page).to have_content('Não há aulas cadastradas neste curso')

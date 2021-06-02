@@ -1,18 +1,19 @@
 ---
 pt-BR:
-  lessons:
-    new:
-      title: 'Nova Aula'
-    edit:
-      title: 'Editar Aula'
-    update:
-      success: 'Aula atualizada com sucesso'
-    destroy:
-      success: 'Aula deletada com sucesso'
-    plurals:
-      duration:
-        one: '1 minuto'
-        other: '%{count} minutos'
+  admin:
+    lessons:
+      new:
+        title: 'Nova Aula'
+      edit:
+        title: 'Editar Aula'
+      update:
+        success: 'Aula atualizada com sucesso'
+      destroy:
+        success: 'Aula deletada com sucesso'
+      plurals:
+        duration:
+          one: '1 minuto'
+          other: '%{count} minutos'
   activerecord:
     models:
       lesson: 'Aula'

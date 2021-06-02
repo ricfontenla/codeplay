@@ -63,7 +63,7 @@ describe 'Admin edits course' do
 
     expect(page).to have_content('Editar Curso')
     expect(page).to have_content('não pode ficar em branco', count: 3)
-    expect(page).to have_link('Cancelar', href: course_path(course))
+    expect(page).to have_link('Cancelar', href: admin_course_path(course))
   end
 
   it 'and code must be uniq' do
@@ -93,6 +93,6 @@ describe 'Admin edits course' do
 
     expect(page).to have_content('Editar Curso')
     expect(page).to have_content('já está em uso')
-    expect(page).to have_link('Cancelar', href: course_path(course))
+    expect(page).to have_link('Cancelar', href: admin_course_path(course))
   end
 end
