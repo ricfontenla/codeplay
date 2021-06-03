@@ -1,10 +1,6 @@
 class User::CoursesController < User::UserController
   before_action :set_course, only: [:show, :enroll]
   
-  def index
-    @courses = Course.all
-  end
-
   def show
   end
 

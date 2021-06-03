@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   namespace :user do
-    resources :courses, only: [:index, :show] do
+    resources :courses, only: [:show] do
       resources :lessons, only: [:show]
       post 'enroll', on: :member
       get 'my_enrollments', on: :collection
