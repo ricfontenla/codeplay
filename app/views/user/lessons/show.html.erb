@@ -10,10 +10,5 @@
 
 <hr class="my-4">
 <div>
-  <%= link_to 'Editar aula', edit_course_lesson_path(@lesson), 
-               class: "btn btn-dark" %>
-  <%= link_to 'Deletar', course_lesson_path(@course, @lesson), method: :delete, 
-                         data: { confirm: 'Tem certeza?' }, 
-                         class: "btn btn-dark" %>
-  <%= link_to 'Voltar', course_path(@course), class: "btn btn-dark" %>
+  <%= link_to 'Voltar', user_course_path(@course), class: "btn btn-dark" %>
 </div>

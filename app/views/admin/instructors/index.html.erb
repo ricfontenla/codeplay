@@ -6,7 +6,7 @@
 <% else %>
   <% @instructors.each do |instructor| %>
     <div>
-      <h2><%= link_to instructor.name, instructor %></h2>
+      <h2><%= link_to instructor.name, [:admin, instructor] %></h2>
       <%= instructor.bio %>
       <hr class="my-4">
     </div>
@@ -14,6 +14,6 @@
 <% end %>
 
 <div>
-  <%= link_to 'Cadastrar um Professor', new_instructor_path, 
+  <%= link_to 'Cadastrar um Professor', new_admin_instructor_path, 
                     class: "btn btn-dark" %>
 </div>

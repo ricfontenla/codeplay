@@ -1,7 +1,12 @@
 <h1>Meus Cursos</h1>
-
-<% @enrollments.each do |enrollment| %>
-  <%= enrollment.course.name %>
-  <p>Comprado em: <%=I18n.localize enrollment.created_at %></p>
-  <p>Valor da compra: <%= number_to_currency enrollment.price %></p>
-<% end %>
+<div>
+  <% if @enrollments.empty? %>
+    <p>Você ainda não possui nenhum curso</p>
+  <% else %>
+    <% @enrollments.each do |enrollment| %>
+      <%= link_to enrollment.course.name, user_course_path(enrollment.course) %>
+      <p>Comprado em: <%= I18n.l enrollment.created_at, :format => :long %></p>
+      <p>Valor da compra: <%= number_to_currency enrollment.price %></p>
+    <% end %>
+  <% end %>
+</div>

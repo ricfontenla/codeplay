@@ -2,13 +2,11 @@ require 'rails_helper'
 
 describe 'Admin registers courses' do
   it 'successfully' do
-    admin = Admin.create!(email: 'ademir@codeplay.com', 
-                          password: '987654')
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')
 
-    login_as admin, scope: :admin
+    admin_login
     visit root_path
     click_on 'Cursos'
     click_on 'Cadastrar um Curso'
@@ -26,14 +24,11 @@ describe 'Admin registers courses' do
     expect(page).to have_content('RUBYONRAILS')
     expect(page).to have_content('R$ 30,00')
     expect(page).to have_content(I18n.l Date.current)
-    expect(page).to have_link('Fulano Fulano', href: instructor_path(instructor))
+    expect(page).to have_link('Fulano Fulano', href: admin_instructor_path(instructor))
   end
 
   it 'and attributes cannot be blank' do
-    admin = Admin.create!(email: 'ademir@codeplay.com', 
-                          password: '987654')
-
-    login_as admin, scope: :admin
+    admin_login
     visit new_admin_course_path
     click_on 'Criar curso'
 
@@ -43,8 +38,6 @@ describe 'Admin registers courses' do
   end
 
   it 'and code must be unique' do
-    admin = Admin.create!(email: 'ademir@codeplay.com', 
-                          password: '987654')
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')
@@ -55,7 +48,7 @@ describe 'Admin registers courses' do
                    enrollment_deadline: '22/12/2033', 
                    instructor: instructor)
 
-    login_as admin, scope: :admin
+    admin_login
     visit new_admin_course_path
     fill_in 'Código', with: 'RUBYBASIC'
     click_on 'Criar curso'

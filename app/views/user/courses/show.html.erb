@@ -11,7 +11,7 @@
   <dt><%= Course.human_attribute_name(:enrollment_deadline) %>:</dt>
   <dd><%= I18n.localize @course.enrollment_deadline %></dd>
   <dt><%= Course.human_attribute_name(:instructor_id) %>:</dt>
-  <dd><%= link_to @course.instructor.name, instructor_path(@course.instructor) %></dt>
+  <dd><%= @course.instructor.name %></dt>
 </dl>
 
 <hr class="my-4">
@@ -25,7 +25,6 @@
       <p>O prazo para adquirir este curso terminou</p>
     <% end %>
   <% else %>
-    <br/><br/>
     <p>Você já possui este curso</p>
   <% end %>
 

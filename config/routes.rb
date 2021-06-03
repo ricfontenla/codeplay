@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :admins
 
   namespace :admin do
+    resources :instructors
     resources :courses do
       resources :lessons, only: [:new, :create, :show, :edit, :update, :destroy]
     end
@@ -17,8 +18,6 @@ Rails.application.routes.draw do
       get 'my_enrollments', on: :collection
     end
   end
-  
-  resources :courses, only: [:show]
 
-  resources :instructors
+  resources :courses, only: [:show]
 end

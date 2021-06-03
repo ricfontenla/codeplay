@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe 'Admin edits instructors' do
   it 'sucessfully' do
-    admin = Admin.create!(email: 'ademir@codeplay.com', 
-                          password: '987654')
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')
@@ -11,7 +9,7 @@ describe 'Admin edits instructors' do
                 .attach(io: File.open('spec/fixtures/profile1.jpeg'), 
                         filename: 'profile1.jpeg')
     
-    login_as admin, scope: :admin
+    admin_login
     visit root_path
     click_on 'Professores'
     click_on instructor.name
@@ -22,7 +20,7 @@ describe 'Admin edits instructors' do
     attach_file 'Foto do perfil', Rails.root.join('spec/fixtures/profile2.jpg')
     click_on 'Salvar Professor'
 
-    expect(current_path).to eq(instructor_path(instructor))
+    expect(current_path).to eq(admin_instructor_path(instructor))
     expect(page).to have_content('Sicrano Sicrano')
     expect(page).to have_content('sicrano@codeplay.com.br')
     expect(page).to have_content('Dev e fundador na Code Play')
@@ -31,8 +29,6 @@ describe 'Admin edits instructors' do
   end
   
   it 'attributes cannot be blank' do
-    admin = Admin.create!(email: 'ademir@codeplay.com', 
-                          password: '987654')
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')
@@ -40,8 +36,8 @@ describe 'Admin edits instructors' do
                 .attach(io: File.open('spec/fixtures/profile1.jpeg'), 
                         filename: 'profile1.jpeg')
 
-    login_as admin, scope: :admin
-    visit instructor_path(instructor)
+    admin_login
+    visit admin_instructor_path(instructor)
     click_on 'Editar'
     fill_in 'Nome', with: ''
     fill_in 'E-mail', with: ''
@@ -49,12 +45,10 @@ describe 'Admin edits instructors' do
 
     expect(page).to have_content('Editar Professor')
     expect(page).to have_content('não pode ficar em branco', count: 2)
-    expect(page).to have_link('Cancelar', href: instructor_path(instructor))
+    expect(page).to have_link('Cancelar', href: admin_instructor_path(instructor))
   end
 
   it 'and email must be uniq' do
-    admin = Admin.create!(email: 'ademir@codeplay.com', 
-                          password: '987654')
     instructor1 = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')
@@ -68,14 +62,14 @@ describe 'Admin edits instructors' do
                   .attach(io: File.open('spec/fixtures/profile2.jpg'), 
                           filename: 'profile2.jpg')
               
-    login_as admin, scope: :admin
-    visit instructor_path(instructor1)
+    admin_login
+    visit admin_instructor_path(instructor1)
     click_on 'Editar'
     fill_in 'E-mail', with: 'sicrano@codeplay.com.br'
     click_on 'Salvar Professor'
 
     expect(page).to have_content('Editar Professor')
     expect(page).to have_content('já está em uso')
-    expect(page).to have_link('Cancelar', href: instructor_path(instructor1))
+    expect(page).to have_link('Cancelar', href: admin_instructor_path(instructor1))
   end
 end

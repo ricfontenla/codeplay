@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe 'Admin registers lessons' do
   it 'sucessfully' do
-    admin = Admin.create!(email: 'ademir@codeplay.com', 
-                          password: '987654')
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')
@@ -14,7 +12,7 @@ describe 'Admin registers lessons' do
                             enrollment_deadline: Date.current, 
                             instructor: instructor)
 
-    login_as admin, scope: :admin
+    admin_login
     visit root_path
     click_on 'Cursos'
     click_on 'Ruby'
@@ -31,8 +29,6 @@ describe 'Admin registers lessons' do
   end
 
   it 'and name cannot be blank' do
-    admin = Admin.create!(email: 'ademir@codeplay.com', 
-                          password: '987654')
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')
@@ -43,7 +39,7 @@ describe 'Admin registers lessons' do
                             enrollment_deadline: Date.current, 
                             instructor: instructor)
 
-    login_as admin,scope: :admin
+    admin_login
     visit admin_course_path(course)
     click_on 'Cadastrar uma aula'
     click_on 'Cadastrar aula'

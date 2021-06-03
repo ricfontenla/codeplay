@@ -16,9 +16,9 @@
 
 <hr class="my-4">
 <div>
-  <%= link_to 'Editar', edit_instructor_path, class: "btn btn-dark" %>
-  <%= link_to 'Deletar', instructor_path(@instructor), method: :delete, 
+  <%= link_to 'Editar', edit_admin_instructor_path, class: "btn btn-dark" %>
+  <%= link_to 'Deletar', admin_instructor_path(@instructor), method: :delete, 
                          data: { confirm: 'Tem certeza?' }, 
                          class: "btn btn-dark" %>
-  <%= link_to 'Voltar', instructors_path, class: "btn btn-dark" %>
+  <%= link_to 'Voltar', admin_instructors_path, class: "btn btn-dark" %>
 </div>

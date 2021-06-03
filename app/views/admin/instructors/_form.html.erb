@@ -1,4 +1,4 @@
-<%= form_with model: instructor do |form| %>
+<%= form_with model: [:admin, instructor] do |form| %>
   <div>
     <dl>
       <dt><%= form.label :name %></dt>

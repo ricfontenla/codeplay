@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe 'Admin deletes course' do
   it 'sucessfully, with its dependent lessons ' do
-    admin = Admin.create!(email: 'jane_doe@codeplay.com', 
-                          password: '123456')
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')
@@ -18,7 +16,7 @@ describe 'Admin deletes course' do
                             duration: 40, 
                             course: course)
       
-    login_as admin, scope: :admin
+    admin_login
     visit root_path
     click_on 'Cursos'
     click_on 'Ruby'

@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe 'admin edits lessons' do
   it 'successfully' do
-    admin = Admin.create!(email: 'ademir@codeplay.com', 
-                          password: '987654')
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')
@@ -18,7 +16,7 @@ describe 'admin edits lessons' do
                             duration: 50, 
                             course: course)
     
-    login_as admin, scope: :admin
+    admin_login
     visit root_path
     click_on 'Cursos'
     click_on 'Ruby'
@@ -35,13 +33,9 @@ describe 'admin edits lessons' do
     expect(page).to have_content('Aula atualizada com sucesso')
     expect(page).not_to have_content('Lógica de Programação')
     expect(page).not_to have_content('50 minutos')
-
-
   end
 
   it 'and cannot be blank' do
-    admin = Admin.create!(email: 'ademir@codeplay.com', 
-                          password: '987654')
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')
@@ -56,7 +50,7 @@ describe 'admin edits lessons' do
                             duration: 50, 
                             course: course)
 
-    login_as admin, scope: :admin
+    admin_login
     visit admin_course_lesson_path(course, lesson)
     click_on 'Editar aula'
     fill_in 'Nome', with: ''

@@ -1,5 +1,12 @@
 ---
 pt-BR:
+  courses:
+      index:
+        title: 'Cursos Cadastrados'
+        empty: 'Nenhum curso disponível'
+      show:
+        title2: 'Aulas neste curso'
+        lessons_empty: 'Não há aulas cadastradas neste curso'
   admin:
     courses:
       index:
@@ -16,6 +23,14 @@ pt-BR:
         success: 'Curso editado com sucesso'
       destroy:
         success: 'Curso apagado com sucesso'
+  user:
+    courses:
+      index:
+        title: 'Cursos Cadastrados'
+        empty: 'Nenhum curso disponível'
+      show:
+        title2: 'Aulas neste curso'
+        lessons_empty: 'Não há aulas cadastradas neste curso'
   activerecord:
     models:
       course: 'Curso'

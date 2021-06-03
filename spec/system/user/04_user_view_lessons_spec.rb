@@ -1,7 +1,9 @@
 require 'rails_helper'
 
-describe 'Admin view lessons' do
+describe 'user view lessons' do
   it 'sucessfully' do
+    user = User.create!(email: 'jane_doe@codeplay.com', 
+                        password: '123456')
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')
@@ -20,9 +22,8 @@ describe 'Admin view lessons' do
                              duration: 50, 
                              course: course)
     
-    admin_login
+    login_as user, scope: :user
     visit root_path
-    click_on 'Cursos'
     click_on 'Ruby'
 
     expect(page).to have_content('Aulas neste curso:')
@@ -33,48 +34,70 @@ describe 'Admin view lessons' do
   end
 
   it 'and view details' do
+    user = User.create!(email: 'jane_doe@codeplay.com', 
+                        password: '123456')
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')
     course = Course.create!(name: 'Ruby', 
                             description: 'Um curso de Ruby',
-                            code: 'RUBYBASIC', 
-                            price: 10,
-                            enrollment_deadline: Date.current, 
+                            code: 'RUBYBASIC', price: 10,
+                            enrollment_deadline: 1.month.from_now, 
                             instructor: instructor)
     lesson = Lesson.create!(name: 'Lógica de Programação', 
                             content: 'Conceitos de lógica de programação', 
                             duration: 40, 
                             course: course)
-    Lesson.create!(name: 'Tipos Primitivos', 
-                   content: 'Integer, Float, String, Boolean', 
-                   duration: 50, 
-                  course: course)
+    Enrollment.create!(user: user, 
+                      course: course, 
+                      price: course.price)
 
-    admin_login
-    visit admin_course_path(course)
-    click_on 'Lógica de Programação'
-
-    expect(current_path).to eq admin_course_lesson_path(course, lesson)
+    login_as user, scope: :user
+    visit user_course_lesson_path(course, lesson)
+    
     expect(page).to have_content('Lógica de Programação')
-    expect(page).to have_content('Conceitos de lógica de programação')
     expect(page).to have_content('40 minutos')
-    expect(page).to have_link('Voltar', href: admin_course_path(course))
+    expect(page).to have_content('Conceitos de lógica de programação')
   end
 
-  it 'and no lessons available' do
+  it 'and cannot view lesson details whitout enrollment' do
+    user = User.create!(email: 'jane_doe@codeplay.com', 
+                        password: '123456')
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')
     course = Course.create!(name: 'Ruby', 
                             description: 'Um curso de Ruby',
-                            code: 'RUBYBASIC', 
-                            price: 10,
-                            enrollment_deadline: Date.current, 
+                            code: 'RUBYBASIC', price: 10,
+                            enrollment_deadline: 1.month.from_now, 
+                            instructor: instructor)
+    Lesson.create!(name: 'Lógica de Programação', 
+                   content: 'Conceitos de lógica de programação', 
+                   duration: 40, 
+                   course: course)
+
+    login_as user, scope: :user
+    visit root_path
+    click_on 'Ruby'
+
+    expect(page).to_not have_link('Lógica de Programação')
+    expect(page).to have_content('Lógica de Programação')
+  end
+
+  it 'and no lessons available' do
+    user = User.create!(email: 'jane_doe@codeplay.com', 
+                        password: '123456')
+    instructor = Instructor.create!(name: 'Fulano Fulano', 
+                                    email: 'fulano@codeplay.com.br', 
+                                    bio: 'Dev e instrutor na Code Play')
+    course = Course.create!(name: 'Ruby', 
+                            description: 'Um curso de Ruby',
+                            code: 'RUBYBASIC', price: 10,
+                            enrollment_deadline: 1.month.from_now, 
                             instructor: instructor)
 
-    admin_login
-    visit admin_course_path(course)
+    login_as user, scope: :user
+    visit user_course_path(course)
     
     expect(page).to have_content('Aulas neste curso:')
     expect(page).to have_content('Não há aulas cadastradas neste curso')

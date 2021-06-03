@@ -15,21 +15,38 @@ describe 'Admin manages account' do
       expect(page).to have_content('Login efetuado com sucesso')
       expect(current_path).to eq(root_path)
       expect(page).to have_content('ademir@codeplay.com')
-      expect(page).to have_link('Professores', href: instructors_path)
+      expect(page).to have_link('Professores', href: admin_instructors_path)
       expect(page).to have_link('Cursos', href: admin_courses_path)
       expect(page).to have_link('Sair', href: destroy_admin_session_path)
       expect(page).to_not have_link('Login de Usuário')
       expect(page).to_not have_link('Login de Administrador')
-      
+      expect(page).to_not have_link('Meu Perfil')      
+    end
+
+    it 'and mistakes his email or password' do
+      Admin.create!(email: 'ademir@codeplay.com', 
+                    password: '987654')
+
+      visit root_path
+      click_on 'Login de Administrador'
+      fill_in 'Email', with: 'ademar@codeplay.com'
+      fill_in 'Senha', with: '123456'
+      click_on 'Entrar'
+
+      expect(page).to have_content('Email ou senha inválida')
+      expect(current_path).to eq(new_admin_session_path)
+      expect(page).to_not have_content('ademir@codeplay.com')
+      expect(page).to_not have_link('Professores', href: admin_instructors_path)
+      expect(page).to_not have_link('Cursos', href: admin_courses_path)
+      expect(page).to_not have_link('Sair', href: destroy_admin_session_path)
+      expect(page).to have_link('Login de Usuário')
+      expect(page).to have_link('Login de Administrador')      
     end
   end
 
   context 'and loggout' do
     it 'sucessfully' do
-      admin = Admin.create!(email: 'ademir@codeplay.com', 
-                            password: '987654')
-
-      login_as admin, scope: :admin
+      admin_login
       visit root_path
       click_on 'Sair'
 
@@ -46,7 +63,7 @@ describe 'Admin manages account' do
 
   context 'and forgot password' do
     it 'and try to recover' do
-      admin = Admin.create!(email: 'ademir@codeplay.com', 
+      Admin.create!(email: 'ademir@codeplay.com', 
                             password: '987654')
   
       visit new_admin_session_path

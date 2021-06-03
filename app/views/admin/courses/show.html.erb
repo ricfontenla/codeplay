@@ -11,7 +11,7 @@
   <dt><%= Course.human_attribute_name(:enrollment_deadline) %>:</dt>
   <dd><%= I18n.localize @course.enrollment_deadline %></dd>
   <dt><%= Course.human_attribute_name(:instructor_id) %>:</dt>
-  <dd><%= link_to @course.instructor.name, instructor_path(@course.instructor) %></dt>
+  <dd><%= link_to @course.instructor.name, admin_instructor_path(@course.instructor) %></dt>
 </dl>
 
 <hr class="my-4">

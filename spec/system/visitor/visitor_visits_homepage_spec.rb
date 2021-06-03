@@ -41,16 +41,31 @@ describe 'Visitor browses the application' do
     expect(page).to have_content('RUBYBASIC') 
     expect(page).to have_content('R$ 10,00')
     expect(page).to have_content(1.month.from_now.strftime('%d/%m/%Y'))
-    expect(page).to have_link('Fulano Fulano', href: instructor_path(instructor))
+    expect(page).to have_content('Fulano Fulano')
     expect(page).to have_link('Voltar', href: root_path)
   end
   
-  xit 'and view lessons' do
-  end
+  it 'and view lessons' do
+    instructor = Instructor.create!(name: 'Fulano Fulano', 
+                                    email: 'fulano@codeplay.com.br', 
+                                    bio: 'Dev e instrutor na Code Play')
+    course = Course.create!(name: 'Ruby', 
+                            description: 'Um curso de Ruby',
+                            code: 'RUBYBASIC', 
+                            price: 10,
+                            enrollment_deadline: Date.current, 
+                            instructor: instructor)
+    Lesson.create!(name: 'Lógica de Programação', 
+                   content: 'Conceitos de lógica de programação', 
+                   duration: 40, 
+                   course: course)
 
-  xit 'and cannot view details of lesson' do
-  end
+    visit root_path
+    click_on 'Ruby'
 
-  xit 'and view details of a instructor' do
+    expect(page).to have_content('Lógica de Programação')
+    expect(page).not_to have_link('Lógica de Programação')
+    expect(page).to have_content('40 minutos')
+
   end
 end

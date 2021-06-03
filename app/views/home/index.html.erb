@@ -3,17 +3,21 @@
 
 <h3>Cursos Disponíveis:</h3>
 <div>
-  <% @courses.each do |course| %>
-    <dl>
-      <% if admin_signed_in? %>
-        <dt><%= link_to course.name, admin_course_path(course) %></dt>
-      <% elsif user_signed_in? %>
-        <dt><%= link_to course.name, user_course_path(course) %></dt>
-      <% else %>
-        <dt><%= link_to course.name, course_path(course) %></dt>
-      <% end %>
-      <dd><%= course.description %></dd>
-      <dd><%= number_to_currency course.price %></dd>
-    </dl>
+  <% if @courses.any? %>
+    <% @courses.each do |course| %>
+      <dl>
+        <% if admin_signed_in? %>
+          <dt><%= link_to course.name, admin_course_path(course) %></dt>
+        <% elsif user_signed_in? %>
+          <dt><%= link_to course.name, user_course_path(course) %></dt>
+        <% else %>
+          <dt><%= link_to course.name, course_path(course) %></dt>
+        <% end %>
+        <dd><%= course.description %></dd>
+        <dd><%= number_to_currency course.price %></dd>
+      </dl>
+    <% end %>
+  <% else %>
+    <p>Nenhum curso disponível</p>
   <% end %>
 </div>

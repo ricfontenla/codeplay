@@ -1,18 +1,19 @@
 ---
 pt-BR:
-  instructors:
-    index:
-      title: 'Professores Cadastrados'
-      empty: 'Nenhum professor cadastrado'
-    new:
-      title: 'Novo Professor'
-    edit:
-      title: 'Editar Professor'
-    update:
-      success: 'Professor editado com sucesso'
-    destroy:
-      success: 'Professor apagado com sucesso'
-      fail: 'Este professor ainda possui cursos ativos'
+  admin:
+    instructors:
+      index:
+        title: 'Professores Cadastrados'
+        empty: 'Nenhum professor cadastrado'
+      new:
+        title: 'Novo Professor'
+      edit:
+        title: 'Editar Professor'
+      update:
+        success: 'Professor editado com sucesso'
+      destroy:
+        success: 'Professor apagado com sucesso'
+        fail: 'Este professor ainda possui cursos ativos'
   activerecord:
     models:
       instructor: 'Professor'

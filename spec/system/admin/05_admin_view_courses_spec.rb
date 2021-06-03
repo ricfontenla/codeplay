@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe 'Admin view courses' do
   it 'successfully' do
-    admin = Admin.create!(email: 'ademir@codeplay.com', 
-                          password: '987654')
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')
@@ -20,7 +18,7 @@ describe 'Admin view courses' do
                    enrollment_deadline: 2.months.from_now, 
                    instructor: instructor)
     
-    login_as admin, scope: :admin
+    admin_login
     visit root_path
     click_on 'Cursos'
 
@@ -34,8 +32,6 @@ describe 'Admin view courses' do
   end
 
   it 'and view details' do
-    admin = Admin.create!(email: 'ademir@codeplay.com', 
-                          password: '987654')
     instructor = Instructor.create!(name: 'Fulano Fulano', 
                                     email: 'fulano@codeplay.com.br', 
                                     bio: 'Dev e instrutor na Code Play')
@@ -52,7 +48,7 @@ describe 'Admin view courses' do
                             enrollment_deadline: 2.months.from_now, 
                             instructor: instructor)
 
-    login_as admin, scope: :admin
+    admin_login
     visit admin_courses_path
     click_on 'Ruby on Rails'
 
@@ -61,7 +57,7 @@ describe 'Admin view courses' do
     expect(page).to have_content('RUBYONRAILS')
     expect(page).to have_content('R$ 20,00')
     expect(page).to have_content(2.months.from_now.strftime("%d/%m/%Y"))
-    expect(page).to have_link('Fulano Fulano', href: instructor_path(instructor))
+    expect(page).to have_link('Fulano Fulano', href: admin_instructor_path(instructor))
     expect(page).to have_link('Voltar', href: admin_courses_path)
 
   end
