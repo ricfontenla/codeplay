@@ -2,23 +2,13 @@ require 'rails_helper'
 
 describe 'Admin view lessons' do
   it 'sucessfully' do
-    instructor = Instructor.create!(name: 'Fulano Fulano', 
-                                    email: 'fulano@codeplay.com.br', 
-                                    bio: 'Dev e instrutor na Code Play')
-    course = Course.create!(name: 'Ruby', 
-                            description: 'Um curso de Ruby',
-                            code: 'RUBYBASIC', 
-                            price: 10,
-                            enrollment_deadline: Date.current, 
-                            instructor: instructor)
-    lesson1 = Lesson.create!(name: 'Lógica de Programação', 
-                             content: 'Conceitos de lógica de programação', 
-                             duration: 40, 
-                             course: course)
-    lesson2 = Lesson.create!(name: 'Tipos Primitivos', 
-                             content: 'Integer, Float, String, Boolean', 
-                             duration: 50, 
-                             course: course)
+    course = create(:course, name: 'Ruby')
+    lesson1 = create(:lesson, name: 'Lógica de Programação', 
+                              duration: 40, 
+                              course: course)
+    lesson2 = create(:lesson, name: 'Tipos Primitivos', 
+                              duration: 50, 
+                              course: course)
     
     admin_login
     visit root_path
