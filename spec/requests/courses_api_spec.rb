@@ -97,13 +97,13 @@ describe 'Courses API' do
     end
 
     it 'should not create a course with missing params' do
-      instructor = Instructor.create!(name: 'Fulano Fulano', 
-                                      email: 'fulano@codeplay.com.br', 
-                                      bio: 'Dev e instrutor na Code Play')
-
-      post '/api/v1/courses'
+      post '/api/v1/courses', params: { course: {  } }
 
       expect(response).to have_http_status(422)
+      expect(parsed_body['name']).to eq('não pode ficar em branco')
+      expect(parsed_body['code']).to eq('não pode ficar em branco')
+      expect(parsed_body['price']).to eq('não pode ficar em branco')
+      expect(parsed_body['instructor']).to eq('é obrigatório(a)')
     end
 
     it 'should not create a course with repited code' do
@@ -126,7 +126,15 @@ describe 'Courses API' do
                  instructor_id: instructor.id} 
       }
 
+      expect(response).to have_http_status(422)
+    end
+
+    it 'should not create a course with invalid params' do
+      post '/api/v1/courses'
+
       expect(response).to have_http_status(412)
+      expect(response.content_type).to include('application/json')
+      expect(response.body).to include('paramêtros inválidos')
     end
   end
 
