@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :instructor do
-    email { 'fulano@codeplay.com.br' }
+    sequence(:email) { |n| "fulano#{n}@codeplay.com.br" }
     name { 'Fulano Fulano' }
     bio { 'Dev e instrutor na Code Play' }
   end

@@ -16,7 +16,6 @@ class Api::V1::CoursesController < ActionController::API
   end
 
   def create
-    byebug
     @course = Course.new(course_params)
     @course.save!
     render json: @course, status: 201

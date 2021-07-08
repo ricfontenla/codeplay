@@ -10,6 +10,7 @@ FactoryBot.define do
     trait :with_lessons do
       after(:create) do |course, evaluator|
         create_list(:lesson, 2, course: course)
+      end 
     end
   end
 end

@@ -23,7 +23,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :courses, only: [:index, :show, :create, :update, :destroy], param: :code
+      resources :courses, only: [:index, :show, :create, :update, :destroy], param: :code do
+        resources :enrollments, only: [:index]
+      end
     end
   end
 end

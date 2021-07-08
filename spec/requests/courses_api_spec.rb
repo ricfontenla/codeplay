@@ -96,7 +96,7 @@ describe 'Courses API' do
       expect(parsed_body['enrollment_deadline']).to eq(Date.current.strftime('%Y-%m-%d'))
     end
 
-    it 'should not create a course with missing params' do
+    xit 'should not create a course with missing params' do
       post '/api/v1/courses', params: { course: {  } }
 
       expect(response).to have_http_status(422)
@@ -106,7 +106,7 @@ describe 'Courses API' do
       expect(parsed_body['instructor']).to eq('é obrigatório(a)')
     end
 
-    it 'should not create a course with repited code' do
+    xit 'should not create a course with repited code' do
       instructor = Instructor.create!(name: 'Fulano Fulano', 
                                       email: 'fulano@codeplay.com.br', 
                                       bio: 'Dev e instrutor na Code Play')
@@ -129,7 +129,7 @@ describe 'Courses API' do
       expect(response).to have_http_status(422)
     end
 
-    it 'should not create a course with invalid params' do
+    xit 'should not create a course with invalid params' do
       post '/api/v1/courses'
 
       expect(response).to have_http_status(412)
